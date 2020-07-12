@@ -6,12 +6,19 @@
 /*   By: sunpark <sunpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/07/11 21:13:31 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/07/12 15:46:19 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
+
+# include <math.h>
+
+typedef struct	s_vars {
+	void		*mlx;
+	void		*win;
+}				t_vars;
 
 typedef struct	s_data {
 	void		*img;
