@@ -6,13 +6,14 @@
 /*   By: sunpark <sunpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/07/12 15:46:19 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/07/14 15:18:05 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include <stdlib.h>
 # include <math.h>
 
 typedef struct	s_vars {
