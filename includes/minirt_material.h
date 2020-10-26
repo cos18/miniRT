@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minirt_material.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 22:16:24 by sunpark          ###   ########.fr       */
+/*   Created: 2020/10/18 21:08:27 by sunpark           #+#    #+#             */
+/*   Updated: 2020/10/19 15:46:29 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef MINIRT_MATERIAL_H
+# define MINIRT_MATERIAL_H
 
-int	main(int argv, char **argc)
-{
-	int	chapter;
+#include "minirt_struct.h"
 
-	if (argv < 2 || argv > 3 ||
-			(argv == 3 && (ft_strncmp(argc[2], "--save", 6) != 0)))
-		return (ft_printf("Wrong argc\n"));
-	chapter = ft_atoi(argc[1]);
-	if (chapter == 2)
-		show_final(argv - 2);
-	else
-		ft_printf("Wrong argc\n");
-}
+t_material	*mat_lambertian_new(t_vec *color);
+int			lambertian_scatter(t_material *mat, t_ray *ray_in,
+								t_hit_record *rec, t_material_info *info);
+t_material	*mat_metal_new(t_vec *color, double fuzz);
+int			metal_scatter(t_material *mat, t_ray *ray_in, t_hit_record *rec,
+						t_material_info *info);
+
+
+#endif

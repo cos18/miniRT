@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hitlst_info_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 22:16:24 by sunpark          ###   ########.fr       */
+/*   Created: 2020/10/14 04:25:55 by sunpark           #+#    #+#             */
+/*   Updated: 2020/10/25 13:34:45 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argv, char **argc)
+t_hitlst_info		*hitlst_info_new(t_ray *r)
 {
-	int	chapter;
+	t_hitlst_info	*result;
 
-	if (argv < 2 || argv > 3 ||
-			(argv == 3 && (ft_strncmp(argc[2], "--save", 6) != 0)))
-		return (ft_printf("Wrong argc\n"));
-	chapter = ft_atoi(argc[1]);
-	if (chapter == 2)
-		show_final(argv - 2);
-	else
-		ft_printf("Wrong argc\n");
+	result = (t_hitlst_info *)malloc(sizeof(t_hitlst_info));
+	result->ray = r;
+	result->t_min = HIT_T_MIN;
+	result->t_max = INFINITY;
+	result->rec = hit_record_new();
+	return (result);
+}
+
+void				free_hitlst_info(t_hitlst_info *info, int is_ray_ori_free)
+{
+	ray_free(info->ray, is_ray_ori_free);
+	free_hit_record(info->rec);
+	free(info);
 }

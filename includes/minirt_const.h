@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minirt_const.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 22:16:24 by sunpark          ###   ########.fr       */
+/*   Created: 2020/10/08 16:11:02 by sunpark           #+#    #+#             */
+/*   Updated: 2020/10/25 13:47:22 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef MINIRT_CONST_H
+# define MINIRT_CONST_H
 
-int	main(int argv, char **argc)
-{
-	int	chapter;
+# define TRUE 1
+# define FALSE 0
 
-	if (argv < 2 || argv > 3 ||
-			(argv == 3 && (ft_strncmp(argc[2], "--save", 6) != 0)))
-		return (ft_printf("Wrong argc\n"));
-	chapter = ft_atoi(argc[1]);
-	if (chapter == 2)
-		show_final(argv - 2);
-	else
-		ft_printf("Wrong argc\n");
-}
+# define MINI_PI 3.1415926535897932385
+
+# define OBJ_SPHERE 1
+
+# define MAT_LAMBERTIAN 1
+# define MAT_METAL 2
+
+# define HIT_T_MIN 0.001
+# define ANTI_SAMPLES 50
+# define REFLECT_DEPTH 5
+# define PTHREAD_CNT 16
+
+#endif

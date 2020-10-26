@@ -1,7 +1,10 @@
 # miniRT
+
+![sample](https://repository-images.githubusercontent.com/299168011/8b8c0e00-150a-11eb-99b3-731770f40e70)
+
 The goal of this project is to generate images using the Raytracing protocol. Those computer generated images will each represent a scene, as seen from a specific angle and position, defined by simple geometric objects, and each with its own lighting system.
 
-[Subject](https://cdn.intra.42.fr/pdf/pdf/10458/en.subject.pdf)
+[Subject](https://cdn.intra.42.fr/pdf/pdf/13225/en.subject.pdf)
 
 ### 🎯 Object
 #### ✅ Mandatory part
@@ -12,6 +15,8 @@ The goal of this project is to generate images using the Raytracing protocol. Th
 - Light management: spot brightness, hard shadows, ambience lighting (objects are never completely in the dark). Colored and multi-spot lights have to be handled correctly.
 - Project must save the rendered image in bmp format when its second argument is "–-save".
 - If no second argument is supplied, the program displays the image in a window using minilibX
+- Project must take as a first argument a scene description file with the `.rt` extension. It will contain window/rendered image size, light, element infomation. (Detailed infomation is described in project subject)
+- Project must implement Sphere, Plane, Square, Cylinder, Triangle element.
 
 #### 🎉 Bonus part
 - [ ] Normal disruption e.g. using sine which gives a wave effect.
