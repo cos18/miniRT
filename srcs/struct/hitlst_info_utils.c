@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:25:55 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/25 13:34:45 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:38 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_hitlst_info		*hitlst_info_new(t_ray *r)
 {
 	t_hitlst_info	*result;
 
-	result = (t_hitlst_info *)malloc(sizeof(t_hitlst_info));
+	result = (t_hitlst_info *)malloc_safe(sizeof(t_hitlst_info));
 	result->ray = r;
 	result->t_min = HIT_T_MIN;
 	result->t_max = INFINITY;
@@ -26,7 +26,7 @@ t_hitlst_info		*hitlst_info_new(t_ray *r)
 
 void				free_hitlst_info(t_hitlst_info *info, int is_ray_ori_free)
 {
-	ray_free(info->ray, is_ray_ori_free);
+	free_ray(info->ray, is_ray_ori_free);
 	free_hit_record(info->rec);
 	free(info);
 }

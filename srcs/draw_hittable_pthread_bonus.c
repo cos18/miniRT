@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/25 13:34:29 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:16:29 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void				draw_hittable_pthread(t_camera *cam, t_list *lst)
 	int				pnum;
 	t_thread_info	*info;
 
-	threads = (pthread_t *)malloc(sizeof(pthread_t) * PTHREAD_CNT);
+	threads = (pthread_t *)malloc_safe(sizeof(pthread_t) * PTHREAD_CNT);
 	pnum = 0;
 	while (++pnum <= PTHREAD_CNT)
 	{

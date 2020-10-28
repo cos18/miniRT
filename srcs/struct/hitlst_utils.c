@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 17:33:30 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:41 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list			*hitlst_new(void)
 {
 	t_list		*result;
 
-	result = (t_list *)malloc(sizeof(t_list));
+	result = (t_list *)malloc_safe(sizeof(t_list));
 	result->content = NULL;
 	result->next = NULL;
 	return (result);

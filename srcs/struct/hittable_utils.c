@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:35:38 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 22:08:40 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:44 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_hittable		*hittable_create(void *obj, int obj_type, t_material *mat)
 {
 	t_hittable	*result;
 
-	result = (t_hittable *)malloc(sizeof(t_hittable));
+	result = (t_hittable *)malloc_safe(sizeof(t_hittable));
 	result->obj = obj;
 	result->obj_type = obj_type;
 	result->mat = material_dup(mat);

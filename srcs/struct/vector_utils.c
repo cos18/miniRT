@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 15:15:13 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/19 14:48:19 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:18:28 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_vec	*vec_cross(t_vec *a, t_vec *b)
 {
 	t_vec	*result;
 
-	result = (t_vec*)malloc(sizeof(t_vec));
+	result = (t_vec*)malloc_safe(sizeof(t_vec));
 	result->x = a->y * b->z - a->z * b->y;
 	result->y = a->z * b->x - a->x * b->z;
 	result->z = a->x * b->y - a->y * b->x;

@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:23:18 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/23 14:34:24 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:59 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_thread_info		*tinfo_new(t_camera *cam, t_list *lst, int tnum)
 {
 	t_thread_info	*result;
 
-	result = (t_thread_info *)malloc(sizeof(t_thread_info));
+	result = (t_thread_info *)malloc_safe(sizeof(t_thread_info));
 	result->cam = cam;
 	result->lst = lst;
 	result->tnum = tnum;

@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 20:29:30 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 15:54:44 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:18:03 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_vec		*vec_mul_each(t_vec *a, t_vec *b)
 {
 	t_vec	*result;
 
-	result = (t_vec*)malloc(sizeof(t_vec));
+	result = (t_vec*)malloc_safe(sizeof(t_vec));
 	result->x = a->x * b->x;
 	result->y = a->y * b->y;
 	result->z = a->z * b->z;

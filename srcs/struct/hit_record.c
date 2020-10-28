@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:57:03 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/17 16:18:38 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:31 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_hit_record	*hit_record_new(void)
 {
 	t_hit_record	*result;
 
-	result = (t_hit_record *)malloc(sizeof(t_hit_record));
+	result = (t_hit_record *)malloc_safe(sizeof(t_hit_record));
 	result->normal = NULL;
 	result->p = NULL;
 	return (result);

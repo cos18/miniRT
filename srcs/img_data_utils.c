@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_data_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 11:50:24 by cos               #+#    #+#             */
-/*   Updated: 2020/10/08 14:43:24 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:16:36 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ t_img_data		*create_img_data(int width, int height)
 	int			h;
 	int			w;
 
-	result = (t_img_data *)malloc(sizeof(t_img_data));
+	result = (t_img_data *)malloc_safe(sizeof(t_img_data));
 	result->width = width;
 	result->height = height;
-	result->img = (int **)malloc(sizeof(int *) * width);
+	result->img = (int **)malloc_safe(sizeof(int *) * width);
 	w = -1;
 	while ((++w) < width)
 	{
-		result->img[w] = (int *)malloc(sizeof(int) * height);
+		result->img[w] = (int *)malloc_safe(sizeof(int) * height);
 		h = -1;
 		while ((++h) < height)
 			result->img[w][h] = 0;

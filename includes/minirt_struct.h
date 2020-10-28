@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 22:08:09 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 20:15:48 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ typedef struct			s_ray
 	t_vec				*dir;
 }						t_ray;
 
-t_ray					*ray_create(t_vec *origin, t_vec *direction);
+t_ray					*ray_new(t_vec *origin, t_vec *direction);
 t_vec					*ray_at(t_ray *ray, double t);
-void					ray_free(t_ray *ray, int is_orig_free);
+void					free_ray(t_ray *ray, int is_orig_free);
 
 typedef struct			s_hit_record
 {

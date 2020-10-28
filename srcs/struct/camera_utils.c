@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:33:13 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/25 11:58:36 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:23 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_camera		*camera_new(double aspect_ratio)
 	double		focal_length;
 	t_vec		*tmp;
 
-	result = (t_camera *)malloc(sizeof(t_camera));
+	result = (t_camera *)malloc_safe(sizeof(t_camera));
 	result->aspect_ratio = aspect_ratio;
 	viewport_height = 2.0;
 	viewport_width = viewport_height * aspect_ratio;
@@ -68,7 +68,7 @@ t_camera		*camera_locate_new(t_vec *lookfrom, t_vec *lookat,
 		free(vup);
 		vup = vec_create(1, 0, 0);
 	}
-	result = (t_camera *)malloc(sizeof(t_camera));
+	result = (t_camera *)malloc_safe(sizeof(t_camera));
 	view_h = 2.0 * tan(vfov / 2.0);
 	view_w = view_h * aspect_ratio;
 	result->horizontal = vec_unit_apply(vec_cross_apply(vup, lookat));
@@ -93,7 +93,7 @@ t_ray			*camera_get_ray(t_camera *cam, double u, double v)
 	vec_add_apply(tmp, tmp2);
 	free(tmp2);
 	vec_sub_apply(tmp, cam->origin);
-	return (ray_create(cam->origin, tmp));
+	return (ray_new(cam->origin, tmp));
 }
 
 void			free_camera(t_camera *cam)

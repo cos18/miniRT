@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 15:28:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/18 19:00:48 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:18:13 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_vec		*vec_add(t_vec *a, t_vec *b)
 {
 	t_vec	*result;
 
-	result = (t_vec*)malloc(sizeof(t_vec));
+	result = (t_vec*)malloc_safe(sizeof(t_vec));
 	result->x = a->x + b->x;
 	result->y = a->y + b->y;
 	result->z = a->z + b->z;
@@ -27,7 +27,7 @@ t_vec		*vec_sub(t_vec *a, t_vec *b)
 {
 	t_vec	*result;
 
-	result = (t_vec*)malloc(sizeof(t_vec));
+	result = (t_vec*)malloc_safe(sizeof(t_vec));
 	result->x = a->x - b->x;
 	result->y = a->y - b->y;
 	result->z = a->z - b->z;
@@ -38,7 +38,7 @@ t_vec		*vec_mul_const(t_vec *a, double c)
 {
 	t_vec	*result;
 
-	result = (t_vec*)malloc(sizeof(t_vec));
+	result = (t_vec*)malloc_safe(sizeof(t_vec));
 	result->x = a->x * c;
 	result->y = a->y * c;
 	result->z = a->z * c;
@@ -49,7 +49,7 @@ t_vec		*vec_div_const(t_vec *a, double c)
 {
 	t_vec	*result;
 
-	result = (t_vec*)malloc(sizeof(t_vec));
+	result = (t_vec*)malloc_safe(sizeof(t_vec));
 	result->x = a->x / c;
 	result->y = a->y / c;
 	result->z = a->z / c;

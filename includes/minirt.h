@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 22:07:36 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:09:12 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include "minirt_const.h"
 # include <stdlib.h>
 # include <math.h>
+
+void			throw(char *message);
+void			*malloc_safe(size_t size);
 
 int				get_color_val(t_vec *color);
 int				get_t(int trgb);
@@ -58,5 +61,18 @@ t_plane			*plane_new(t_vec *dot, t_vec *normal);
 void			free_plane(t_plane *p);
 int				plane_hit(void *plane, t_ray *r, t_hitlst_info *info,
 							t_hit_record *rec);
+
+typedef struct	s_cylinder
+{
+	t_ray		*start;
+	double		radius;
+	double		end_t;
+}				t_cylinder;
+
+t_cylinder		*cylinder_new(t_vec *start_vec, t_vec *normal,
+								double radius, double height);
+void			free_cylinder(t_cylinder *cy);
+int				cylinder_hit(void *cylinder, t_ray *r, t_hitlst_info *info,
+								t_hit_record *rec);
 
 #endif

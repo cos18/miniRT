@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:31:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/23 08:28:26 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 20:13:40 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int				lambertian_scatter(t_material *mat, t_ray *ray_in,
 
 	ray_in->dir->x = ray_in->dir->x;
 	scatter_direction = vec_add_apply(vec_random_unit(), rec->normal);
-	info->scattered = ray_create(vec_dup(rec->p), scatter_direction);
+	info->scattered = ray_new(vec_dup(rec->p), scatter_direction);
 	info->attenuation = vec_dup(mat->color);
 	return (TRUE);
 }
@@ -53,7 +53,7 @@ int				metal_scatter(t_material *mat, t_ray *ray_in, t_hit_record *rec,
 	reflected = vec_reflect(tmp, rec->normal);
 	free(tmp);
 	tmp = vec_mul_const_apply(vec_random_in_unit_sphere(), mat->fuzz);
-	info->scattered = ray_create(vec_dup(rec->p),
+	info->scattered = ray_new(vec_dup(rec->p),
 							vec_add_apply(reflected, tmp));
 	free(tmp);
 	info->attenuation = vec_dup(mat->color);

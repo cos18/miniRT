@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 14:18:55 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/09 21:21:15 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:16:52 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char		*get_bmp_filename(char *filename)
 {
 	char	*result;
 
-	result = (char *)malloc(ft_strlen(filename) + 2);
+	result = (char *)malloc_safe(ft_strlen(filename) + 2);
 	ft_strlcpy(result, filename, ft_strlen(filename) - 1);
 	result[ft_strlen(filename) - 2] = 'b';
 	result[ft_strlen(filename) - 1] = 'm';
@@ -79,7 +79,7 @@ void		save_bmp(t_img_data *data, char *filename)
 
 	bmp_filename = get_bmp_filename(filename);
 	img_size = data->width * data->height * 3;
-	raw_bmp = (char *)malloc(img_size + BMP_HEADER_SIZE);
+	raw_bmp = (char *)malloc_safe(img_size + BMP_HEADER_SIZE);
 	locate = 0;
 	while (locate < img_size + BMP_HEADER_SIZE)
 		raw_bmp[locate++] = 0;

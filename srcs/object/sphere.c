@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 15:33:55 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 22:07:44 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:17 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_sphere		*sphere_new(t_vec *center, double radius)
 {
 	t_sphere	*result;
 
-	result = (t_sphere *)malloc(sizeof(t_sphere));
+	result = (t_sphere *)malloc_safe(sizeof(t_sphere));
 	result->center = center;
 	result->radius = radius;
 	return (result);
@@ -40,8 +40,7 @@ int				check_sphere_hitrange(void *s, t_ray *r,
 		t = (-info->half_b + info->root_d * (is_big_t ? (1) : (-1))) / info->a;
 		if (info->t_min < t && t < info->t_max)
 		{
-			if (rec->p)
-				reset_hit_record(rec);
+			reset_hit_record(rec);
 			rec->t = t;
 			rec->p = ray_at(r, t);
 			rec->normal = vec_sub(rec->p, ((t_sphere *)s)->center);

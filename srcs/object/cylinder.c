@@ -1,63 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:05:47 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:15 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/28 21:17:11 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_plane		*plane_new(t_vec *dot, t_vec *normal)
+t_cylinder		*cylinder_new(t_vec *start_vec, t_vec *normal,
+								double radius, double height)
 {
-	t_plane	*result;
+	t_cylinder	*result;
 	
-	result = (t_plane *)malloc_safe(sizeof(t_plane));
-	result->dot = dot;
-	result->normal = normal;
-
+	result = (t_cylinder *)malloc_safe(sizeof(t_cylinder));
+	result->start = ray_new(start_vec, normal);
+	result->radius = radius;
+	result->end_t = height / vec_length(result->start->dir);
 	return (result);
 }
 
-void		free_plane(t_plane *p)
+void			free_cylinder(t_cylinder *cy)
 {
-	free(p->dot);
-	free(p->normal);
-	free(p);
+	free_ray(cy->start, TRUE);
+	free(cy);
 }
 
-int			is_in_plane(t_plane *p, t_vec *point)
+int				cylinder_hit(void *cylinder, t_ray *r, t_hitlst_info *info,
+								t_hit_record *rec)
 {
-	double	sum;
-	int		i;
-
-	sum = 0;
-	i = -1;
-	while ((++i) < 3)
-		sum += (vec_idx(p->normal, i)
-					* (vec_idx(point, i) - vec_idx(p->dot, i)));
-	return (sum == 0 ? TRUE : FALSE);
-}
-
-double		get_plane_ray_t(t_plane *p, t_ray *r)
-{
-	double	tmp;
-
-	tmp = vec_dot(p->normal, p->dot) - vec_dot(p->normal, r->orig);
-	return (tmp / vec_dot(p->normal, r->dir));
-}
-
-int			plane_hit(void *plane, t_ray *r, t_hitlst_info *info,
-							t_hit_record *rec)
-{
-	double	t;
-	t_plane	*p;
-
-	p = (t_plane *)plane;
+	t_cylinder	*cy;
+	
+	/*
+	cy = (t_cylinder *)cylinder;
 	if (vec_is_orthogonal(r->dir, p->normal))
 		return (FALSE);
 	t = get_plane_ray_t(p, r);
@@ -69,5 +48,6 @@ int			plane_hit(void *plane, t_ray *r, t_hitlst_info *info,
 	rec->normal = vec_unit(p->normal);
 	hit_set_normal(rec, r);
 	rec->mat = info->mat;
+	*/
 	return (TRUE);
 }
