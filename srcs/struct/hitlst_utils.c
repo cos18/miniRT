@@ -6,13 +6,13 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:41 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/30 16:27:53 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_list			*hitlst_new(void)
+t_list			*rtlst_new(void)
 {
 	t_list		*result;
 
@@ -29,7 +29,7 @@ void			hitlst_add(t_list *lst, void *obj, int obj_type,
 	{
 		while (lst->next)
 			lst = lst->next;
-		lst->next = hitlst_new();
+		lst->next = rtlst_new();
 		lst = lst->next;
 	}
 	lst->content = hittable_create(obj, obj_type, mat);

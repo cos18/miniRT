@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 11:39:22 by sunpark           #+#    #+#             */
-/*   Updated: 2020/07/03 21:39:09 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/29 18:16:28 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# define BUFFER_SIZE 1024
-# define FD_SIZE 1024
-# define READ 1
-# define READ_EOF 0
-# define ERROR -1
+# define GNL_BUFFER_SIZE 1024
+# define GNL_FD_SIZE 1024
+# define GNL_READ 1
+# define GNL_READ_EOF 0
+# define GNL_ERROR -1
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);

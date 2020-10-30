@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:11:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/25 13:47:22 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/30 15:55:24 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define MINI_PI 3.1415926535897932385
 
 # define OBJ_SPHERE 1
+# define OBJ_PLANE 2
 
 # define MAT_LAMBERTIAN 1
 # define MAT_METAL 2

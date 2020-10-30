@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 20:15:48 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/30 20:08:33 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 
 struct					s_material;
+struct					s_rt;
 
 typedef struct			s_vars
 {
@@ -37,7 +38,11 @@ typedef struct			s_img_data
 	int					**img;
 	int					width;
 	int					height;
+	double				aspect_ratio;
 }						t_img_data;
+
+t_img_data		*create_img_data(int width, int height);
+void			free_img_data(t_img_data *data);
 
 typedef struct			s_vec
 {
@@ -133,11 +138,14 @@ t_hittable				*hittable_create(void *obj, int obj_type,
 												struct s_material *mat);
 void					free_hittable(t_hittable *h);
 
-t_list					*hitlst_new(void);
+t_list					*rtlst_new(void);
 void					hitlst_add(t_list *lst, void *obj, int obj_type,
 										struct s_material *mat);
 void					free_hitlst(t_list *lst);
 int						hitlst_hit(t_list *lst, t_hitlst_info *info);
+
+void					camlst_add(struct s_rt *rt, t_vec *from, t_vec *at, double fov);
+void					free_camlst(t_list *lst);
 
 typedef struct			s_camera
 {
@@ -151,7 +159,7 @@ typedef struct			s_camera
 
 t_camera				*camera_new(double aspect_ratio);
 t_camera				*camera_locate_new(t_vec *lookfrom, t_vec *lookat,
-											double aspect_ratio, double vfov);
+											double aspect_ratio, double fov);
 t_ray					*camera_get_ray(t_camera *cam, double u, double v);
 void					free_camera(t_camera *cam);
 
@@ -188,5 +196,14 @@ typedef struct			s_thread_info
 t_thread_info			*tinfo_new(t_camera *cam, t_list *lst, int tnum);
 int						tinfo_get_step(t_thread_info *info);
 int						tinfo_get_y_init_value(t_thread_info *info);
+
+typedef struct			s_rt
+{
+	t_img_data			*img;
+	t_list				*camlst;
+	t_list				*lightlst;
+	t_list				*hitlst;
+	t_vec				*amb_light;
+}						t_rt;
 
 #endif

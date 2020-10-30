@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:33:13 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:23 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/30 20:10:24 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ t_camera		*camera_new(double aspect_ratio)
 }
 
 /*
-** vfov -> radian
+** fov -> radian
 ** lookat : camera view vector (normal vector)
 */
 
 t_camera		*camera_locate_new(t_vec *lookfrom, t_vec *lookat,
-									double aspect_ratio, double vfov)
+									double aspect_ratio, double fov)
 {
 	t_camera	*result;
 	double		view_h;
@@ -69,8 +69,8 @@ t_camera		*camera_locate_new(t_vec *lookfrom, t_vec *lookat,
 		vup = vec_create(1, 0, 0);
 	}
 	result = (t_camera *)malloc_safe(sizeof(t_camera));
-	view_h = 2.0 * tan(vfov / 2.0);
-	view_w = view_h * aspect_ratio;
+	view_w = 2.0 * tan(fov / 2.0);
+	view_h = view_w / aspect_ratio;
 	result->horizontal = vec_unit_apply(vec_cross_apply(vup, lookat));
 	result->vertical = vec_mul_const_apply(
 							vec_cross(lookat, result->horizontal), view_h);

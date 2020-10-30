@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   camlst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/28 20:46:52 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/30 20:14:14 by sunpark          ###   ########.fr       */
+/*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
+/*   Updated: 2020/10/30 19:30:13 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		throw_error(char *message)
+void			camlst_add(t_rt *rt, t_vec *from, t_vec *at, double fov)
 {
-	perror(message);
-	exit(EXIT_FAILURE);
+	t_list		*camlst;
+
+	camlst = rt->camlst;
+	if (camlst->content)
+	{
+		while (camlst->next)
+			camlst = camlst->next;
+		camlst->next = rtlst_new();
+		camlst = camlst->next;
+	}
+	camlst->content = camera_locate_new(from, at, rt->img->aspect_ratio, fov);
 }
 
-void		throw_error_num(char *message, int pnum)
+void			free_camlst(t_list *lst)
 {
-	errno = pnum;
-	throw_error(message);
-}
-
-void		*malloc_safe(size_t size)
-{
-	void	*result;
-
-	result = malloc(size);
-	if (result == NULL)
-		throw_error("Malloc failed");
-	return (result);
+	if (lst->next)
+		free_camlst(lst->next);
+	free_camera(lst->content);
+	free(lst);
 }

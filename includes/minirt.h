@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:09:12 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/30 20:14:19 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,39 @@
 # include "minirt_const.h"
 # include <stdlib.h>
 # include <math.h>
+# include <errno.h>
+# include <stdio.h>
 
-void			throw(char *message);
+void			throw_error(char *message);
+void			throw_error_num(char *message, int pnum);
 void			*malloc_safe(size_t size);
 
 int				get_color_val(t_vec *color);
 int				get_t(int trgb);
 t_vec			*get_color(int trgb);
 
-t_img_data		*create_img_data(int width, int height);
-void			free_img_data(t_img_data *data);
-
 void			mlx_draw_by_img_data(t_mlx_data *mlx_data, t_img_data *img_data);
 int				mlx_key_handle(int keycode);
 void			mlx_show(t_img_data *data, char *title);
+
+int				free_strs(char **sep, int is_vaild_p, int word_locate);
+char			**split_space(char const *s);
+
+int				ft_atoi_strict(char *str);
+double			ft_atod_strict(char *str);
+t_vec			*vec_str(char *str);
+
+int				check_info_cnt(char **words, int len);
+void			parse_resolution(t_rt *rt, char **words);
+void			parse_amb_light(t_rt *rt, char **words);
+void			parse_camera(t_rt *rt, char **words);
+void			parse_light(t_rt *rt, char **words);
+
+void			parse_sphere(t_rt *rt, char **words);
+void			parse_plane(t_rt *rt, char **words);
+
+t_rt			*parse_file(char *filename);
+void			free_rt(t_rt *rt);
 
 # define BMP_HEADER_SIZE 122
 void			save_bmp(t_img_data *data, char	*filename);

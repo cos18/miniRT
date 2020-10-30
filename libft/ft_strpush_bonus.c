@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strpush_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42.kr>            +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 23:33:54 by sunpark           #+#    #+#             */
-/*   Updated: 2020/04/09 10:38:42 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/30 21:04:29 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,13 @@ char	*ft_strpush(char *s, int push)
 {
 	int	locate;
 
-	if (s && ((int)ft_strlen(s) > push))
+	locate = 0;
+	while (s[locate + push])
 	{
-		locate = 0;
-		while (s[locate + push])
-		{
-			s[locate] = s[locate + push];
-			locate++;
-		}
-		while (s[locate])
-			s[locate++] = '\0';
+		s[locate] = s[locate + push];
+		locate++;
 	}
+	while (s[locate])
+		s[locate++] = '\0';
 	return (s);
 }

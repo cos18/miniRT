@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:05:47 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:15 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/30 21:23:51 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 t_plane		*plane_new(t_vec *dot, t_vec *normal)
 {
 	t_plane	*result;
-	
+
 	result = (t_plane *)malloc_safe(sizeof(t_plane));
 	result->dot = dot;
 	result->normal = normal;
-
 	return (result);
 }
 
