@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 14:54:20 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 17:44:29 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int				get_color_val(t_vec *color);
 int				get_t(int trgb);
 t_vec			*get_color(int trgb);
 
-void			mlx_draw_by_img_data(t_mlx_data *mlx_data, t_img_data *img_data);
+void			mlx_draw_img(t_mlx_data *mlx_data, t_img_data *img_data);
 int				mlx_key_handle(int keycode);
-void			mlx_show(t_img_data *data, char *title);
+void			mlx_show(t_img_data *data, char *title, void *mlx);
 
 int				free_strs(char **sep, int is_vaild_p, int word_locate);
 char			**split_space(char const *s);
@@ -55,6 +55,7 @@ t_rt			*parse_file(char *filename, int is_mlx);
 void			free_rt(t_rt *rt);
 
 # define BMP_HEADER_SIZE 122
+
 void			save_bmp(t_img_data *data, char	*filename);
 
 double			clamp(double x, double min, double max);

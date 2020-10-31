@@ -6,14 +6,14 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 15:05:34 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 17:53:27 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 /*
-** Using ft_isalpha -> Not implemented yet
+** Using ft_isalpha -> Not impledmented yet
 */
 
 static void		parse_line(t_rt *rt, char **words)
@@ -122,7 +122,7 @@ t_rt			*parse_file(char *filename, int is_mlx)
 
 void			free_rt(t_rt *rt)
 {
-	free_camlst(rt->camlst);
+	// free_camlst(rt->camlst);
 	free_hitlst(rt->hitlst);
 	free(rt->lightlst);
 	free(rt->amb_light);

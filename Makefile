@@ -6,13 +6,12 @@
 #    By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/04 13:34:20 by sunpark           #+#    #+#              #
-#    Updated: 2020/10/30 21:06:21 by sunpark          ###   ########.fr        #
+#    Updated: 2020/10/31 17:35:36 by sunpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC		= main.c error.c color.c mlx_utils.c save_bmp.c cal_utils.c \
-		draw_hittable_material_bonus.c draw_hittable_pthread_bonus.c \
-		random_bonus.c \
+		random_bonus.c draw_hittable_pthread_bonus.c \
 		struct/vector_calc.c struct/vector_utils.c struct/ray_utils.c \
 		struct/vector_apply.c struct/hit_record.c struct/hittable_utils.c \
 		struct/hitlst_utils.c struct/hitlst_info_utils.c struct/camera_utils.c \

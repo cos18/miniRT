@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:11:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/30 15:55:24 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 17:44:58 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@
 # define HIT_T_MIN 0.001
 # define ANTI_SAMPLES 50
 # define REFLECT_DEPTH 5
-# define PTHREAD_CNT 16
+# define PTHREAD_CNT 32
 
 #endif

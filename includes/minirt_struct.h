@@ -6,18 +6,18 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 15:04:25 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 17:22:44 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_STRUCTURE_H
-# define MINIRT_STRUCTURE_H
+#ifndef MINIRT_STRUCT_H
+# define MINIRT_STRUCT_H
 
 # include "libft.h"
 
-struct					s_material;
-struct					s_rt;
-struct					s_cam_info;
+struct s_material;
+struct s_rt;
+struct s_cam_info;
 
 typedef struct			s_vars
 {
@@ -42,8 +42,8 @@ typedef struct			s_img_data
 	double				aspect_ratio;
 }						t_img_data;
 
-t_img_data		*create_img_data(int width, int height);
-void			free_img_data(t_img_data *data);
+t_img_data				*create_img_data(int width, int height);
+void					free_img_data(t_img_data *data);
 
 typedef struct			s_vec
 {
@@ -121,7 +121,8 @@ typedef struct			s_hitlst_info
 }						t_hitlst_info;
 
 t_hitlst_info			*hitlst_info_new(t_ray *r);
-void					free_hitlst_info(t_hitlst_info *info, int is_ray_ori_free);
+void					free_hitlst_info(t_hitlst_info *info,
+											int is_ray_ori_free);
 
 /*
 ** hit function -> (object *, t_ray *, info *, hit_record *)
@@ -146,8 +147,10 @@ void					hitlst_add(t_list *lst, void *obj, int obj_type,
 void					free_hitlst(t_list *lst);
 int						hitlst_hit(t_list *lst, t_hitlst_info *info);
 
-void					caminfo_lst_add(struct s_rt *rt, t_vec *from, t_vec *at, double fov);
-void					camlst_add(struct s_rt *rt, t_list *camlst, struct s_cam_info *info);
+void					caminfo_lst_add(struct s_rt *rt, t_vec *from,
+											t_vec *at, double fov);
+void					camlst_add(struct s_rt *rt, t_list *camlst,
+									struct s_cam_info *info);
 void					free_camlst(t_list *lst);
 void					free_caminfolst(t_list *lst);
 

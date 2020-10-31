@@ -6,13 +6,13 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 14:13:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 14:33:25 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 17:48:24 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void			mlx_draw_by_img_data(t_mlx_data *mlx_data, t_img_data *img_data)
+void			mlx_draw_img(t_mlx_data *mlx_data, t_img_data *img_data)
 {
 	int			width;
 	int			height;
@@ -47,18 +47,19 @@ int				mlx_key_handle(int keycode)
 	return (0);
 }
 
-void			mlx_show(t_img_data *data, char *title)
+void			mlx_show(t_img_data *data, char *title, void *mlx)
 {
 	t_vars		vars;
 	t_mlx_data	*img;
 
-	vars.mlx = mlx_init();
+	ft_printf("test\n");
+	vars.mlx = mlx;
 	vars.win = mlx_new_window(vars.mlx, data->width, data->height, title);
 	img = (t_mlx_data *)malloc_safe(sizeof(t_mlx_data));
 	img->img = mlx_new_image(vars.mlx, data->width, data->height);
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel), \
 					&(img->line_length), &(img->endian));
-	mlx_draw_by_img_data(img, data);
+	mlx_draw_img(img, data);
 	mlx_put_image_to_window(vars.mlx, vars.win, img->img, 0, 0);
 	mlx_destroy_image(vars.mlx, img->img);
 	mlx_hook(vars.win, 2, 1L << 0, mlx_key_handle, 0);

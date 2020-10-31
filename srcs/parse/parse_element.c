@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:58:17 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 14:56:18 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 17:24:53 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void			parse_camera(t_rt *rt, char **words)
 	degree = ft_atod_strict(words[2]);
 	if (degree < 0 || 180 < degree)
 		throw_error_num("Wrong fov value in Camera", EIO);
-	caminfo_lst_add(rt, vec_atod(words[0]), vec_atod(words[1]), get_radian(degree));
+	caminfo_lst_add(rt, vec_atod(words[0]),
+						vec_atod(words[1]), get_radian(degree));
 }
 
 // void			parse_light(t_rt *rt, char **words);

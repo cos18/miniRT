@@ -1,6 +1,7 @@
 miniRT
 *.swiftdoc
 *.swiftmodule
+*.bmp
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,c,swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,c,swift
