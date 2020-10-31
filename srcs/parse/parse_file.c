@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/30 21:27:02 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 15:05:34 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ static void		apply_lst(t_rt *rt)
 {
 	t_list		*lst;
 	t_material	*mat;
+	t_list		*info_lst;
+	t_cam_info	*info;
 
 	lst = rt->hitlst;
 	while (lst && lst->content)
@@ -81,15 +83,19 @@ static void		apply_lst(t_rt *rt)
 		vec_mul_each_apply(mat->color, rt->amb_light);
 		lst = lst->next;
 	}
-	lst = rt->camlst;
-	while (lst && lst->content)
+	info_lst = rt->camlst;
+	lst = rtlst_new();
+	while (info_lst && info_lst->content)
 	{
-		((t_camera *)(lst->content))->data = rt->img;
-		lst = lst->next;
+		info = info_lst->content;
+		camlst_add(rt, lst, info);
+		info_lst = info_lst->next;
 	}
+	free_caminfolst(rt->camlst);
+	rt->camlst = lst;
 }
 
-t_rt			*parse_file(char *filename)
+t_rt			*parse_file(char *filename, int is_mlx)
 {
 	int			fd;
 	t_rt		*result;
@@ -97,25 +103,25 @@ t_rt			*parse_file(char *filename)
 	if ((fd = open(filename, O_RDONLY)) < 0)
 		throw_error("File open error");
 	result = (t_rt *)malloc_safe(sizeof(t_rt));
-	result->img = NULL;
+	result->mlx = (is_mlx ? mlx_init() : NULL);
+	result->width = 0;
 	result->camlst = rtlst_new();
 	result->lightlst = rtlst_new();
 	result->hitlst = rtlst_new();
 	result->amb_light = NULL;
 	read_line(result, fd);
 	close(fd);
-	if (result->img == NULL || result->camlst->content == NULL
+	if (result->width == 0 || result->camlst->content == NULL
 		|| result->amb_light == NULL)
 		throw_error_num("Nessesary element missing in .rt file", EIO);
 	apply_lst(result);
 	return (result);
 }
 
-// NEED TO FIX LIGHTLST FREE!!
+// NEED TO FIX LIGHTLST FREE & camlst free in later!!!!
 
 void			free_rt(t_rt *rt)
 {
-	free_img_data(rt->img);
 	free_camlst(rt->camlst);
 	free_hitlst(rt->hitlst);
 	free(rt->lightlst);

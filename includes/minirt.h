@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/30 20:14:19 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 14:54:20 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ char			**split_space(char const *s);
 
 int				ft_atoi_strict(char *str);
 double			ft_atod_strict(char *str);
-t_vec			*vec_str(char *str);
+t_vec			*vec_atod(char *str);
+t_vec			*vec_atoi(char *str);
 
 int				check_info_cnt(char **words, int len);
 void			parse_resolution(t_rt *rt, char **words);
@@ -50,7 +51,7 @@ void			parse_light(t_rt *rt, char **words);
 void			parse_sphere(t_rt *rt, char **words);
 void			parse_plane(t_rt *rt, char **words);
 
-t_rt			*parse_file(char *filename);
+t_rt			*parse_file(char *filename, int is_mlx);
 void			free_rt(t_rt *rt);
 
 # define BMP_HEADER_SIZE 122

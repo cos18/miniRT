@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:33:13 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/30 20:10:24 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 15:01:48 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_ray			*camera_get_ray(t_camera *cam, double u, double v)
 
 void			free_camera(t_camera *cam)
 {
+	free_img_data(cam->data);
 	free(cam->horizontal);
 	free(cam->vertical);
 	free(cam->lower_left_corner);

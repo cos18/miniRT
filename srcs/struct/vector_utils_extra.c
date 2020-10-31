@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:54:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/26 21:22:50 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 14:38:21 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,15 @@ double		vec_idx(t_vec *a, int idx)
 	if (idx == 2)
 		return (a->z);
 	return (INFINITY);
+}
+
+int			vec_is_color_range(t_vec *a)
+{
+	if (a->x < 0 || 255 < a->x)
+		return (FALSE);
+	if (a->y < 0 || 255 < a->y)
+		return (FALSE);
+	if (a->z < 0 || 255 < a->z)
+		return (FALSE);
+	return (TRUE);
 }

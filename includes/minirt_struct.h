@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/30 20:08:33 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/10/31 15:04:25 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 struct					s_material;
 struct					s_rt;
+struct					s_cam_info;
 
 typedef struct			s_vars
 {
@@ -70,6 +71,7 @@ void					vec_print(t_vec *a);
 int						vec_is_parallel(t_vec *a, t_vec *b);
 int						vec_is_orthogonal(t_vec *a, t_vec *b);
 double					vec_idx(t_vec *a, int idx);
+int						vec_is_color_range(t_vec *a);
 
 t_vec					*vec_add_apply(t_vec *a, t_vec *b);
 t_vec					*vec_sub_apply(t_vec *a, t_vec *b);
@@ -144,8 +146,10 @@ void					hitlst_add(t_list *lst, void *obj, int obj_type,
 void					free_hitlst(t_list *lst);
 int						hitlst_hit(t_list *lst, t_hitlst_info *info);
 
-void					camlst_add(struct s_rt *rt, t_vec *from, t_vec *at, double fov);
+void					caminfo_lst_add(struct s_rt *rt, t_vec *from, t_vec *at, double fov);
+void					camlst_add(struct s_rt *rt, t_list *camlst, struct s_cam_info *info);
 void					free_camlst(t_list *lst);
+void					free_caminfolst(t_list *lst);
 
 typedef struct			s_camera
 {
@@ -199,11 +203,21 @@ int						tinfo_get_y_init_value(t_thread_info *info);
 
 typedef struct			s_rt
 {
-	t_img_data			*img;
+	void				*mlx;
+	int					width;
+	int					height;
+	double				aspect_ratio;
 	t_list				*camlst;
 	t_list				*lightlst;
 	t_list				*hitlst;
 	t_vec				*amb_light;
 }						t_rt;
+
+typedef struct			s_cam_info
+{
+	t_vec				*from;
+	t_vec				*at;
+	double				fov;
+}						t_cam_info;
 
 #endif
