@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 12:42:18 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:18:30 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/03 14:59:06 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ t_vec			*vec_random_in_hemisphere(t_vec *normal);
 
 int				get_color_sample_gamma(t_vec *color);
 
-void			draw_hittable_pthread(t_camera *cam, t_list *lst);
+void			draw_hittable_pthread(t_camera *cam, t_rt *rt);
 
 #endif

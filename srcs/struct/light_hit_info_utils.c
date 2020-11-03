@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hitlst_info_utils.c                                :+:      :+:    :+:   */
+/*   light_hit_info_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 04:25:55 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/03 14:13:05 by sunpark          ###   ########.fr       */
+/*   Created: 2020/11/03 13:44:39 by sunpark           #+#    #+#             */
+/*   Updated: 2020/11/03 20:39:06 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_hitlst_info		*hitlst_info_new(t_ray *r, double tmax)
+t_light_hit_info		*lhit_info_new(t_vec *to, t_vec *normal, t_ray *r)
 {
-	t_hitlst_info	*result;
+	t_light_hit_info	*result;
 
-	result = (t_hitlst_info *)malloc_safe(sizeof(t_hitlst_info));
-	result->ray = r;
-	result->t_min = HIT_T_MIN;
-	result->t_max = tmax;
-	result->rec = hit_record_new();
+	result = (t_light_hit_info *)malloc_safe(sizeof(t_light_hit_info));
+	result->to = vec_dup(to);
+	result->normal = vec_unit(normal);
+	result->r = (t_ray *)malloc_safe(sizeof(t_ray));
+	result->r->dir = vec_dup(r->dir);
+	result->r->orig = vec_dup(r->orig);
 	return (result);
 }
 
-void				free_hitlst_info(t_hitlst_info *info, int is_ray_ori_free)
+void					free_lhit_info(t_light_hit_info *info)
 {
-	free_ray(info->ray, is_ray_ori_free);
-	free_hit_record(info->rec);
+	free(info->to);
+	free(info->normal);
+	free_ray(info->r, TRUE);
 	free(info);
 }

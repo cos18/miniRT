@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 21:19:41 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/03 21:34:54 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		parse_line(t_rt *rt, char **words)
 	else if (ft_strncmp(*words, "c", 2) == 0)
 		parse_camera(rt, ++words);
 	else if (ft_strncmp(*words, "l", 2) == 0)
-		ft_isalpha(**words);
+		parse_light(rt, ++words);
 	else if (ft_strncmp(*words, "sp", 3) == 0)
 		parse_sphere(rt, ++words);
 	else if (ft_strncmp(*words, "pl", 3) == 0)
@@ -124,7 +124,7 @@ void			free_rt(t_rt *rt)
 {
 	// free_camlst(rt->camlst);
 	free_hitlst(rt->hitlst);
-	free(rt->lightlst);
+	free_lightlst(rt->lightlst);
 	free(rt->amb_light);
 	free(rt);
 }

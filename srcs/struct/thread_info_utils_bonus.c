@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   thread_info_utils_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 11:23:18 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:59 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/03 15:01:21 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
-t_thread_info		*tinfo_new(t_camera *cam, t_list *lst, int tnum)
+t_thread_info		*tinfo_new(t_camera *cam, t_rt *rt, int tnum)
 {
 	t_thread_info	*result;
 
 	result = (t_thread_info *)malloc_safe(sizeof(t_thread_info));
 	result->cam = cam;
-	result->lst = lst;
+	result->hitlst = rt->hitlst;
+	result->lightlst = rt->lightlst;
 	result->tnum = tnum;
 	return (result);
 }

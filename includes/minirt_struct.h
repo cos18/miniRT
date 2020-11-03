@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 21:52:27 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/03 20:55:41 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 struct s_material;
 struct s_rt;
 struct s_cam_info;
+struct s_light_hit_info;
 
 typedef struct			s_vars
 {
@@ -120,7 +121,7 @@ typedef struct			s_hitlst_info
 	struct s_material	*mat;
 }						t_hitlst_info;
 
-t_hitlst_info			*hitlst_info_new(t_ray *r);
+t_hitlst_info			*hitlst_info_new(t_ray *r, double tmax);
 void					free_hitlst_info(t_hitlst_info *info,
 											int is_ray_ori_free);
 
@@ -182,6 +183,7 @@ typedef struct			s_material
 									t_hit_record *rec, t_material_info *info);
 	int					mat_type;
 	t_vec				*color;
+	t_vec				*oricolor;
 	t_vec				*amb;
 	double				fuzz;
 }						t_material;
@@ -197,11 +199,12 @@ void					free_material(t_material *mat);
 typedef struct			s_thread_info
 {
 	t_camera			*cam;
-	t_list				*lst;
+	t_list				*hitlst;
+	t_list				*lightlst;
 	int					tnum;
 }						t_thread_info;
 
-t_thread_info			*tinfo_new(t_camera *cam, t_list *lst, int tnum);
+t_thread_info			*tinfo_new(t_camera *cam, struct s_rt *rt, int tnum);
 int						tinfo_get_step(t_thread_info *info);
 int						tinfo_get_y_init_value(t_thread_info *info);
 
@@ -233,9 +236,24 @@ typedef struct			s_light
 
 t_light					*light_new(t_vec *loc, double bright, t_vec *color);
 void					free_light(t_light *l);
+void					light_hit(t_light *l, t_list *hitlst, t_vec *color,
+										struct s_light_hit_info *info);
 
 void					lightlst_add(t_rt *rt, t_vec *loc,
 										double bright, t_vec *color);
 void					free_lightlst(t_list *lst);
+t_vec					*lightlst_hit(t_list *lightlst, t_list *hitlst,
+										struct s_light_hit_info *info);
+
+typedef struct			s_light_hit_info
+{
+	t_vec				*to;
+	t_vec				*normal;
+	t_ray				*r;
+
+}						t_light_hit_info;
+
+t_light_hit_info		*lhit_info_new(t_vec *to, t_vec *normal, t_ray *r);
+void					free_lhit_info(t_light_hit_info *info);
 
 #endif

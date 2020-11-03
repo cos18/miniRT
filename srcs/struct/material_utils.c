@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:27:10 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 21:20:16 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/03 20:56:14 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_material			*material_new(int mat_type, t_vec *color)
 	result = (t_material *)malloc_safe(sizeof(t_material));
 	vec_div_const_apply(color, 255.0);
 	result->color = color;
+	result->oricolor = vec_dup(color);
 	result->mat_type = mat_type;
 	result->amb = NULL;
 	return (result);

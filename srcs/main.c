@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 19:56:44 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/03 16:37:51 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,14 @@ int				main(int argv, char **argc)
 	camlst = rt->camlst;
 	while (camlst && camlst->content)
 	{
-		draw_hittable_pthread(camlst->content, rt->hitlst);
+		draw_hittable_pthread(camlst->content, rt);
 		camlst = camlst->next;
 	}
 	img = ((t_camera *)(rt->camlst->content))->data;
-	camlst = rt->camlst;
 	mlx = rt->mlx;
 	if (mlx)
 		mlx_show(img, "miniRT", mlx);
 	else
 		save_bmp(img, argc[1]);
 	free_rt(rt);
-	free_camlst(camlst);
 }
