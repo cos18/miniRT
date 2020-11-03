@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 14:13:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:48:24 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/02 19:58:34 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void			mlx_show(t_img_data *data, char *title, void *mlx)
 	t_vars		vars;
 	t_mlx_data	*img;
 
-	ft_printf("test\n");
 	vars.mlx = mlx;
 	vars.win = mlx_new_window(vars.mlx, data->width, data->height, title);
 	img = (t_mlx_data *)malloc_safe(sizeof(t_mlx_data));
@@ -66,5 +65,4 @@ void			mlx_show(t_img_data *data, char *title, void *mlx)
 	mlx_hook(vars.win, 17, 1L << 17, exit_program, 0);
 	mlx_loop(vars.mlx);
 	free(img);
-	ft_printf("test\n");
 }

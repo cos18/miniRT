@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:23:48 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/02 16:52:50 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void			caminfo_lst_add(t_rt *rt, t_vec *from, t_vec *at, double fov)
 
 void			camlst_add(t_rt *rt, t_list *camlst, t_cam_info *info)
 {
+	t_camera	*cam;
+
 	if (camlst->content)
 	{
 		while (camlst->next)
@@ -43,8 +45,8 @@ void			camlst_add(t_rt *rt, t_list *camlst, t_cam_info *info)
 	}
 	camlst->content = camera_locate_new(info->from, info->at,
 												rt->aspect_ratio, info->fov);
-	((t_camera *)(camlst->content))->data = create_img_data(rt->width,
-															rt->height);
+	cam = camlst->content;
+	cam->data = create_img_data(rt->width, rt->height);
 }
 
 void			free_camlst(t_list *lst)

@@ -6,7 +6,7 @@
 #    By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/04 13:34:20 by sunpark           #+#    #+#              #
-#    Updated: 2020/10/31 17:35:36 by sunpark          ###   ########.fr        #
+#    Updated: 2020/11/02 22:01:17 by sunpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC		= main.c error.c color.c mlx_utils.c save_bmp.c cal_utils.c \
 		struct/vector_create.c struct/vector_random_bonus.c \
 		struct/vector_calc_extra.c struct/material_utils.c \
 		struct/thread_info_utils_bonus.c struct/img_data_utils.c \
-		struct/camlst_utils.c struct/vector_utils_extra.c\
+		struct/camlst_utils.c struct/vector_utils_extra.c \
+		struct/light_utils.c struct/lightlst_utils.c \
 		parse/split_space.c parse/parse_string.c parse/parse_element.c \
 		parse/parse_element_object.c parse/parse_file.c \
 		object/sphere.c object/plane.c \
@@ -37,7 +38,7 @@ MLXNAME	= libmlx.dylib
 NAME	= miniRT
 
 GCC		= gcc
-GCCFLAG	= -Wall -Wextra -Werror
+GCCFLAG	= -Wall -Wextra -Werror -g
 RM		= rm -f
 
 %.o:		%.c

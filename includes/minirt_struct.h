@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:22:44 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/02 21:52:27 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ typedef struct			s_material
 									t_hit_record *rec, t_material_info *info);
 	int					mat_type;
 	t_vec				*color;
+	t_vec				*amb;
 	double				fuzz;
 }						t_material;
 
@@ -222,5 +223,19 @@ typedef struct			s_cam_info
 	t_vec				*at;
 	double				fov;
 }						t_cam_info;
+
+typedef struct			s_light
+{
+	t_vec				*loc;
+	double				bright;
+	t_vec				*color;
+}						t_light;
+
+t_light					*light_new(t_vec *loc, double bright, t_vec *color);
+void					free_light(t_light *l);
+
+void					lightlst_add(t_rt *rt, t_vec *loc,
+										double bright, t_vec *color);
+void					free_lightlst(t_list *lst);
 
 #endif

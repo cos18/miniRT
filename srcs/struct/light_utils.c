@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt_const.h                                     :+:      :+:    :+:   */
+/*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/08 16:11:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 20:54:23 by sunpark          ###   ########.fr       */
+/*   Created: 2020/11/02 21:39:12 by sunpark           #+#    #+#             */
+/*   Updated: 2020/11/02 21:45:20 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_CONST_H
-# define MINIRT_CONST_H
+#include "minirt.h"
 
-# define TRUE 1
-# define FALSE 0
+t_light		*light_new(t_vec *loc, double bright, t_vec *color)
+{
+	t_light	*result;
 
-# define MINI_PI 3.1415926535897932385
+	result = (t_light *)malloc_safe(sizeof(t_light));
+	result->loc = loc;
+	result->bright = bright;
+	result->color = color;
+	return (result);
+}
 
-# define OBJ_SPHERE 1
-# define OBJ_PLANE 2
-
-# define MAT_LAMBERTIAN 1
-# define MAT_METAL 2
-
-# define HIT_T_MIN 0.001
-# define ANTI_SAMPLES 50
-# define REFLECT_DEPTH 5
-# define PTHREAD_CNT 32
-
-#endif
+void		free_light(t_light *l)
+{
+	free(l->loc);
+	free(l->color);
+	free(l);
+}

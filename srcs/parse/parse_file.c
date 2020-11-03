@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:53:27 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/02 21:19:41 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void		apply_lst(t_rt *rt)
 	while (lst && lst->content)
 	{
 		mat = ((t_hittable *)(lst->content))->mat;
-		vec_mul_each_apply(mat->color, rt->amb_light);
+		mat->amb = vec_dup(rt->amb_light);
 		lst = lst->next;
 	}
 	info_lst = rt->camlst;

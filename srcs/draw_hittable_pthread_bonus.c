@@ -6,12 +6,13 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:24:29 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/02 21:37:07 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
+/*
 static t_vec		*get_sky_color_t(double t)
 {
 	t_vec			*target;
@@ -23,6 +24,7 @@ static t_vec		*get_sky_color_t(double t)
 	free(tmp);
 	return (target);
 }
+*/
 
 static t_vec		*recur_anti_color(t_list *lst, t_hitlst_info **info,
 											int depth, int *is_free)
@@ -32,25 +34,25 @@ static t_vec		*recur_anti_color(t_list *lst, t_hitlst_info **info,
 	t_vec			*target;
 	double			t;
 
-	if (depth <= 0)
+	if (depth <= 0 || hitlst_hit(lst, *info) == FALSE)
 		return (vec_create(0, 0, 0));
-	if (hitlst_hit(lst, *info))
+	mat = (*info)->rec->mat;
+	if ((t = (*(mat->scatter))(mat, (*info)->ray, (*info)->rec, &mat_info)))
 	{
-		mat = (*info)->rec->mat;
-		if ((t = (*(mat->scatter))(mat, (*info)->ray, (*info)->rec, &mat_info)))
+		if (mat->mat_type == MAT_LAMBERTIAN)
+			target = vec_dup(mat_info.attenuation);
+		else
 		{
 			free_hitlst_info(*info, (*is_free)++);
 			*info = hitlst_info_new(mat_info.scattered);
 			target = vec_mul_each_apply(
-	recur_anti_color(lst, info, depth - 1, is_free), mat_info.attenuation);
+		recur_anti_color(lst, info, depth - 1, is_free), mat_info.attenuation);
 		}
-		else
-			target = vec_create(0, 0, 0);
-		free_material_info(&mat_info, FALSE, !t);
-		return (target);
 	}
-	t = 0.5 * ((vec_unit_apply((*info)->ray->dir))->y + 1.0);
-	return (get_sky_color_t(t));
+	else
+		target = vec_create(0, 0, 0);
+	free_material_info(&mat_info, FALSE, !t);
+	return (target);
 }
 
 static void			get_hittable_material_color(t_list *lst,

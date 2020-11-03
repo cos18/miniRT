@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:58:17 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:24:53 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/03 11:22:51 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ void			parse_camera(t_rt *rt, char **words)
 						vec_atod(words[1]), get_radian(degree));
 }
 
-// void			parse_light(t_rt *rt, char **words);
+void			parse_light(t_rt *rt, char **words)
+{
+	double		bright;
+	t_vec		*color;
+
+	if (check_info_cnt(words, 3) == FALSE)
+		throw_error_num("Wrong number of informations in Light", EIO);
+	bright = ft_atod_strict(words[1]);
+	if (bright < 0 || 1 < bright)
+		throw_error_num("Wrong bright value in Light", EIO);
+	color = vec_atoi(words[2]);
+	if (vec_is_color_range(color) == FALSE)
+		throw_error_num("Wrong RGB color value in Light", EIO);
+	lightlst_add(rt, vec_atod(words[0]), bright, color);
+}
