@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:27:10 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 19:22:11 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 19:52:28 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,12 @@ t_material_info		*material_info_new(void)
 	return (result);
 }
 
-void				free_material_info(t_material_info *info, int is_ori_free,
-											int is_scattered_free)
+void				free_material_info(t_material_info *info)
 {
 	if (info->attenuation)
 		free(info->attenuation);
-	if (info->scattered && is_scattered_free)
+	if (info->scattered)
 		free_ray(info->scattered, TRUE);
-	if (is_ori_free)
-		free(info);
 }
 
 t_material			*material_new(int mat_type, t_vec *color)

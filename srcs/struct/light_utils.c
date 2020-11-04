@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:39:12 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 19:17:42 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 20:22:59 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void				light_hit(t_light *l, t_list *hitlst, t_vec *color,
 		else
 		{
 			is_hit = TRUE;
-			break;
+			break ;
 		}
 	}
 	free_hitlst_info(hinfo, FALSE);

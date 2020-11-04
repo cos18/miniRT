@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 17:03:51 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 19:52:37 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,9 +188,7 @@ typedef struct			s_material
 }						t_material;
 
 t_material_info			*material_info_new(void);
-void					free_material_info(t_material_info *info,
-											int is_ori_free,
-											int is_scattered_free);
+void					free_material_info(t_material_info *info);
 t_material				*material_new(int mat_type, t_vec *color);
 t_material				*material_dup(t_material *mat);
 void					free_material(t_material *mat);

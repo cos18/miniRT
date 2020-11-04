@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:05:47 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:11 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 20:24:25 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int				cylinder_hit(void *cylinder, t_ray *r, t_hitlst_info *info,
 {
 	t_cylinder	*cy;
 	
-	/*
 	cy = (t_cylinder *)cylinder;
 	if (vec_is_orthogonal(r->dir, p->normal))
 		return (FALSE);
@@ -48,6 +47,5 @@ int				cylinder_hit(void *cylinder, t_ray *r, t_hitlst_info *info,
 	rec->normal = vec_unit(p->normal);
 	hit_set_normal(rec, r);
 	rec->mat = info->mat;
-	*/
 	return (TRUE);
 }

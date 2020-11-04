@@ -6,38 +6,25 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 19:38:19 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 20:21:50 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
 static t_vec			*recur_anti_color(t_list *lst, t_hitlst_info **info,
-											int depth, int *is_free)
+											int depth)
 {
 	t_material			*mat;
 	t_material_info		mat_info;
 	t_vec				*target;
-	double				t;
 
 	if (depth <= 0 || hitlst_hit(lst, *info) == FALSE)
 		return (vec_create(0, 0, 0));
 	mat = (*info)->rec->mat;
-	if ((t = (*(mat->scatter))(mat, (*info)->ray, (*info)->rec, &mat_info)))
-	{
-		if (mat->mat_type == MAT_LAMBERTIAN)
-			target = vec_dup(mat_info.attenuation);
-		else
-		{
-			free_hitlst_info(*info, (*is_free)++);
-			*info = hitlst_info_new(mat_info.scattered, INFINITY);
-			target = vec_mul_each_apply(
-		recur_anti_color(lst, info, depth - 1, is_free), mat_info.attenuation);
-		}
-	}
-	else
-		target = vec_create(0, 0, 0);
-	free_material_info(&mat_info, FALSE, !t);
+	(*(mat->scatter))(mat, (*info)->ray, (*info)->rec, &mat_info);
+	target = vec_dup(mat_info.attenuation);
+	free_material_info(&mat_info);
 	return (target);
 }
 
@@ -49,10 +36,8 @@ static void				get_hittable_material_color(t_list *hitlst,
 	t_light_hit_info	*linfo;
 	t_vec				*target;
 	t_vec				*light;
-	int					is_free;
 
-	is_free = FALSE;
-	target = recur_anti_color(hitlst, &info, REFLECT_DEPTH, &is_free);
+	target = recur_anti_color(hitlst, &info, REFLECT_DEPTH);
 	if (info->rec->p)
 	{
 		linfo = lhit_info_new(info->rec->p, info->rec->normal, info->ray);
@@ -62,7 +47,7 @@ static void				get_hittable_material_color(t_list *hitlst,
 		free(light);
 		free_lhit_info(linfo);
 	}
-	free_hitlst_info(info, is_free);
+	free_hitlst_info(info, FALSE);
 	vec_add_apply(color, target);
 	free(target);
 }
@@ -85,7 +70,8 @@ static void				*render(void *arg)
 			color = vec_create(0, 0, 0);
 			locate = -1;
 			while ((++locate) < ANTI_SAMPLES)
-				get_hittable_material_color(tinfo->hitlst, get_hitlst_info_anti(x, y, tinfo->cam), tinfo->lightlst, color);
+				get_hittable_material_color(tinfo->hitlst,
+			get_hitlst_info_anti(x, y, tinfo->cam), tinfo->lightlst, color);
 			tinfo->cam->data->img[x][y] = get_color_sample_gamma(color);
 			free(color);
 		}
