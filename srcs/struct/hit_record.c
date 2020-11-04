@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_record.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:57:03 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:31 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 17:28:39 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void			free_hit_record(t_hit_record *rec)
 
 void			hit_set_normal(t_hit_record *record, t_ray *r)
 {
+	vec_unit_apply(record->normal);
 	record->is_front_face = (vec_dot(r->dir, record->normal) < 0) ?
 								TRUE : FALSE;
 	if (record->is_front_face == FALSE)

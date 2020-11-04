@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/03 21:34:54 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 17:01:05 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_rt			*parse_file(char *filename, int is_mlx)
 
 void			free_rt(t_rt *rt)
 {
-	// free_camlst(rt->camlst);
+	free_camlst(rt->camlst);
 	free_hitlst(rt->hitlst);
 	free_lightlst(rt->lightlst);
 	free(rt->amb_light);

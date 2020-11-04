@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hitlst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/30 16:27:53 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 16:29:29 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				hitlst_hit(t_list *lst, t_hitlst_info *info)
 	while (lst && lst->content)
 	{
 		hittable = (t_hittable *)(lst->content);
-		info->mat = hittable->mat;
+		info->mat = material_dup(hittable->mat);
 		if ((*(hittable->hit))(hittable->obj, info->ray, info, info->rec))
 		{
 			hit_anything = TRUE;

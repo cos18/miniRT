@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camlst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 16:52:50 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 16:58:21 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void			free_camlst(t_list *lst)
 void			free_caminfolst(t_list *lst)
 {
 	if (lst->next)
-		free_camlst(lst->next);
+		free_caminfolst(lst->next);
 	free(lst->content);
 	free(lst);
 }

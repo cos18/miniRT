@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/03 21:41:51 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 19:38:19 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static t_vec			*recur_anti_color(t_list *lst, t_hitlst_info **info,
 	mat = (*info)->rec->mat;
 	if ((t = (*(mat->scatter))(mat, (*info)->ray, (*info)->rec, &mat_info)))
 	{
-		// printf("%d\n", mat->mat_type);
 		if (mat->mat_type == MAT_LAMBERTIAN)
 			target = vec_dup(mat_info.attenuation);
 		else
@@ -58,7 +57,7 @@ static void				get_hittable_material_color(t_list *hitlst,
 	{
 		linfo = lhit_info_new(info->rec->p, info->rec->normal, info->ray);
 		light = lightlst_hit(lightlst, hitlst, linfo);
-		vec_mul_each_apply(light, info->mat->oricolor);
+		vec_mul_each_apply(light, info->mat->color);
 		vec_add_apply(target, light);
 		free(light);
 		free_lhit_info(linfo);
@@ -90,7 +89,7 @@ static void				*render(void *arg)
 			tinfo->cam->data->img[x][y] = get_color_sample_gamma(color);
 			free(color);
 		}
-		// ft_printf("Finish render line %d\n", y);
+		ft_printf("Finish render line %d\n", y);
 	}
 	free(tinfo);
 	return (NULL);

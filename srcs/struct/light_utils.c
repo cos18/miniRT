@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:39:12 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/03 21:23:31 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 19:17:42 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ static t_vec		*get_light_color(t_light *l, t_light_hit_info *info)
 	double			c;
 
 	color = vec_mul_const(l->color, l->bright);
-	light_to_p = vec_sub(info->to, l->loc);
+	light_to_p = vec_unit_apply(vec_sub(info->to, l->loc));
 	reflect = vec_unit_apply(vec_reflect(light_to_p, info->normal));
 	see = vec_unit_apply(vec_mul_const(info->r->dir, -1.0));
 	c = vec_dot(reflect, see);
-	c = c < 0 ? 0 : c;
-	vec_mul_const_apply(color, c / vec_length(light_to_p));
+	c = ((c < 0) ? 0 : c) / vec_length_squared(light_to_p);
+	c = pow(c, 30);
+	c += fmax(0, vec_dot(vec_mul_const_apply(light_to_p, -1), info->normal));
+	vec_mul_const_apply(color, c);
 	free(light_to_p);
 	free(reflect);
 	free(see);
@@ -66,12 +68,12 @@ void				light_hit(t_light *l, t_list *hitlst, t_vec *color,
 		hittable = (t_hittable *)(hitlst->content);
 		if ((*(hittable->hit))(hittable->obj, hinfo->ray, hinfo, hinfo->rec)
 				== FALSE)
-		{
 			hitlst = hitlst->next;
-			continue;
+		else
+		{
+			is_hit = TRUE;
+			break;
 		}
-		is_hit = TRUE;
-		break;
 	}
 	free_hitlst_info(hinfo, FALSE);
 	if (is_hit)

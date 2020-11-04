@@ -6,7 +6,7 @@
 #    By: sunpark <sunpark@studne>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/04 13:34:20 by sunpark           #+#    #+#              #
-#    Updated: 2020/11/03 15:07:31 by sunpark          ###   ########.fr        #
+#    Updated: 2020/11/04 16:47:10 by sunpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ MLXNAME	= libmlx.dylib
 NAME	= miniRT
 
 GCC		= gcc
-GCCFLAG	= -Wall -Wextra -Werror -g -fsanitize=address
+GCCFLAG	= -Wall -Wextra -Werror
 RM		= rm -f
 
 %.o:		%.c

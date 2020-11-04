@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/03 20:55:41 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/04 17:03:51 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,6 @@ typedef struct			s_material
 									t_hit_record *rec, t_material_info *info);
 	int					mat_type;
 	t_vec				*color;
-	t_vec				*oricolor;
 	t_vec				*amb;
 	double				fuzz;
 }						t_material;
