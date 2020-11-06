@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_hittable_pthread_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 20:21:50 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:24:39 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
-
-static t_vec			*recur_anti_color(t_list *lst, t_hitlst_info **info,
-											int depth)
-{
-	t_material			*mat;
-	t_material_info		mat_info;
-	t_vec				*target;
-
-	if (depth <= 0 || hitlst_hit(lst, *info) == FALSE)
-		return (vec_create(0, 0, 0));
-	mat = (*info)->rec->mat;
-	(*(mat->scatter))(mat, (*info)->ray, (*info)->rec, &mat_info);
-	target = vec_dup(mat_info.attenuation);
-	free_material_info(&mat_info);
-	return (target);
-}
 
 static void				get_hittable_material_color(t_list *hitlst,
 													t_hitlst_info *info,
@@ -37,45 +21,56 @@ static void				get_hittable_material_color(t_list *hitlst,
 	t_vec				*target;
 	t_vec				*light;
 
-	target = recur_anti_color(hitlst, &info, REFLECT_DEPTH);
-	if (info->rec->p)
+	if (hitlst_hit(hitlst, info))
 	{
+		target = vec_mul_each(info->rec->mat->color, info->rec->mat->amb);
 		linfo = lhit_info_new(info->rec->p, info->rec->normal, info->ray);
 		light = lightlst_hit(lightlst, hitlst, linfo);
-		vec_mul_each_apply(light, info->mat->color);
+		vec_mul_each_apply(light, info->rec->mat->color);
 		vec_add_apply(target, light);
 		free(light);
 		free_lhit_info(linfo);
 	}
-	free_hitlst_info(info, FALSE);
+	else
+		target = vec_new(0, 0, 0);
 	vec_add_apply(color, target);
 	free(target);
 }
 
+static int				get_pixel_color(int *x, t_thread_info *tinfo)
+{
+	t_vec				*color;
+	int					result;
+	int					locate;
+	t_hitlst_info		*hinfo;
+
+	color = vec_new(0, 0, 0);
+	locate = -1;
+	while ((++locate) < ANTI_SAMPLES)
+	{
+		hinfo = get_hitlst_info_anti(x[0], x[1], tinfo->cam);
+		get_hittable_material_color(tinfo->hitlst, hinfo, tinfo->lightlst,
+										color);
+		free_hitlst_info(hinfo, FALSE, FALSE);
+	}
+	result = get_color_sample_gamma(color);
+	free(color);
+	return (result);
+}
+
 static void				*render(void *arg)
 {
-	int					x;
-	int					y;
-	int					locate;
-	t_vec				*color;
+	int					x[2];
 	t_thread_info		*tinfo;
 
 	tinfo = (t_thread_info *)arg;
-	y = tinfo_get_y_init_value(tinfo);
-	while ((--y) >= (tinfo_get_step(tinfo) * (tinfo->tnum - 1)))
+	x[1] = tinfo_get_y_init_value(tinfo);
+	while ((--x[1]) >= (tinfo_get_step(tinfo) * (tinfo->tnum - 1)))
 	{
-		x = -1;
-		while ((++x) < tinfo->cam->data->width)
-		{
-			color = vec_create(0, 0, 0);
-			locate = -1;
-			while ((++locate) < ANTI_SAMPLES)
-				get_hittable_material_color(tinfo->hitlst,
-			get_hitlst_info_anti(x, y, tinfo->cam), tinfo->lightlst, color);
-			tinfo->cam->data->img[x][y] = get_color_sample_gamma(color);
-			free(color);
-		}
-		ft_printf("Finish render line %d\n", y);
+		x[0] = -1;
+		while ((++x[0]) < tinfo->cam->data->width)
+			tinfo->cam->data->img[x[0]][x[1]] = get_pixel_color(x, tinfo);
+		ft_printf("Finish render line %d\n", x[1]);
 	}
 	free(tinfo);
 	return (NULL);

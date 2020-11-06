@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightlst_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:46:12 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/03 16:58:59 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:24:12 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_vec			*lightlst_hit(t_list *lightlst, t_list *hitlst,
 {
 	t_vec		*result;
 
-	result = vec_create(0, 0, 0);
+	result = vec_new(0, 0, 0);
 	while (lightlst && lightlst->content)
 	{
 		light_hit(lightlst->content, hitlst, result, info);

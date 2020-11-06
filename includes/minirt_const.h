@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 16:11:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 17:04:28 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/05 21:15:00 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 # define OBJ_SPHERE 1
 # define OBJ_PLANE 2
+# define OBJ_SQUARE 3
+# define OBJ_CYLINDER 4
+# define OBJ_TRIANGLE 5
 
 # define MAT_LAMBERTIAN 1
 # define MAT_METAL 2
@@ -27,6 +30,6 @@
 # define HIT_T_MIN 0.001
 # define ANTI_SAMPLES 100
 # define REFLECT_DEPTH 5
-# define PTHREAD_CNT 32
+# define PTHREAD_CNT 16
 
 #endif

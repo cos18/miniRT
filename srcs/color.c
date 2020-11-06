@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 14:06:38 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 21:20:43 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:32:17 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ int			get_color_sample_gamma(t_vec *color)
 	x = sqrt(color->x * scale);
 	y = sqrt(color->y * scale);
 	z = sqrt(color->z * scale);
+	x = clamp(x, 0.0, 0.999) * 256.0;
+	y = clamp(y, 0.0, 0.999) * 256.0;
+	z = clamp(z, 0.0, 0.999) * 256.0;
+	return ((int)x << 16 | (int)y << 8 | (int)z);
+}
+
+int			get_color_sample(t_vec *color)
+{
+	double	x;
+	double	y;
+	double	z;
+
+	x = sqrt(color->x);
+	y = sqrt(color->y);
+	z = sqrt(color->z);
 	x = clamp(x, 0.0, 0.999) * 256.0;
 	y = clamp(y, 0.0, 0.999) * 256.0;
 	z = clamp(z, 0.0, 0.999) * 256.0;

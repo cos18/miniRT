@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hitlst_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 16:29:29 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:24:01 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int				hitlst_hit(t_list *lst, t_hitlst_info *info)
 			info->t_max = info->rec->t;
 		}
 		lst = lst->next;
+		free_material(info->mat);
 	}
 	return (hit_anything);
 }

@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:33:13 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/02 17:11:43 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:23:52 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ t_camera		*camera_new(double aspect_ratio)
 	viewport_height = 2.0;
 	viewport_width = viewport_height * aspect_ratio;
 	focal_length = 1.0;
-	result->origin = vec_create(0, 0, 0);
-	result->horizontal = vec_create(viewport_width, 0, 0);
-	result->vertical = vec_create(0, viewport_height, 0);
-	tmp = vec_create(0, 0, focal_length);
+	result->origin = vec_new(0, 0, 0);
+	result->horizontal = vec_new(viewport_width, 0, 0);
+	result->vertical = vec_new(0, viewport_height, 0);
+	tmp = vec_new(0, 0, focal_length);
 	set_camera_llc(result, tmp);
 	free(tmp);
 	return (result);
@@ -62,11 +62,11 @@ t_camera		*camera_locate_new(t_vec *lookfrom, t_vec *lookat,
 	t_vec		*vup;
 
 	vec_unit_apply(vec_mul_const_apply(lookat, -1.0));
-	vup = vec_create(0, 1, 0);
+	vup = vec_new(0, 0, 1);
 	if (vec_is_parallel(vup, lookat))
 	{
 		free(vup);
-		vup = vec_create(1, 0, 0);
+		vup = vec_new(1, 0, 0);
 	}
 	result = (t_camera *)malloc_safe(sizeof(t_camera));
 	view_w = 2.0 * tan(fov / 2.0);

@@ -6,13 +6,13 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 15:40:57 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:18:25 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:24:24 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec		*vec_create(double x, double y, double z)
+t_vec		*vec_new(double x, double y, double z)
 {
 	t_vec	*result;
 
@@ -25,5 +25,5 @@ t_vec		*vec_create(double x, double y, double z)
 
 t_vec		*vec_dup(t_vec *ori)
 {
-	return (vec_create(ori->x, ori->y, ori->z));
+	return (vec_new(ori->x, ori->y, ori->z));
 }

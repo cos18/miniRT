@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 21:08:48 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 14:36:56 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:23:48 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_vec					*vec_atod(char *str)
 	len = -1;
 	while ((++len) < 3)
 		val[len] = ft_atod_strict(nums[len]);
-	result = vec_create(val[0], val[1], val[2]);
+	result = vec_new(val[0], val[1], val[2]);
 	free_strs(nums, TRUE, 0);
 	return (result);
 }
@@ -100,7 +100,7 @@ t_vec					*vec_atoi(char *str)
 	len = -1;
 	while ((++len) < 3)
 		val[len] = ft_atoi_strict(nums[len]);
-	result = vec_create(val[0], val[1], val[2]);
+	result = vec_new(val[0], val[1], val[2]);
 	free_strs(nums, TRUE, 0);
 	return (result);
 }

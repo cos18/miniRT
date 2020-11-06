@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:39:12 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 20:22:59 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:24:11 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ static t_vec		*get_light_color(t_light *l, t_light_hit_info *info)
 	return (color);
 }
 
+void				light_next(t_list **hitlst, t_hitlst_info *hinfo)
+{
+	*hitlst = (*hitlst)->next;
+	free_material(hinfo->mat);
+	hinfo->mat = NULL;
+}
+
 void				light_hit(t_light *l, t_list *hitlst, t_vec *color,
 								t_light_hit_info *info)
 {
@@ -63,19 +70,17 @@ void				light_hit(t_light *l, t_list *hitlst, t_vec *color,
 
 	is_hit = FALSE;
 	hinfo = hitlst_info_new(ray_new(l->loc, vec_sub(info->to, l->loc)), 1);
-	while (hitlst && hitlst->content)
+	while (is_hit == FALSE && hitlst && hitlst->content)
 	{
 		hittable = (t_hittable *)(hitlst->content);
+		hinfo->mat = material_dup(hittable->mat);
 		if ((*(hittable->hit))(hittable->obj, hinfo->ray, hinfo, hinfo->rec)
 				== FALSE)
-			hitlst = hitlst->next;
+			light_next(&hitlst, hinfo);
 		else
-		{
 			is_hit = TRUE;
-			break ;
-		}
 	}
-	free_hitlst_info(hinfo, FALSE);
+	free_hitlst_info(hinfo, FALSE, TRUE);
 	if (is_hit)
 		return ;
 	lcolor = get_light_color(l, info);

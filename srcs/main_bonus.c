@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:43:44 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:22:04 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 int				main(int argv, char **argc)
 {
@@ -26,7 +26,7 @@ int				main(int argv, char **argc)
 	camlst = rt->camlst;
 	while (camlst && camlst->content)
 	{
-		draw_hittable(camlst->content, rt);
+		draw_hittable_pthread(camlst->content, rt);
 		camlst = camlst->next;
 	}
 	img = ((t_camera *)(rt->camlst->content))->data;

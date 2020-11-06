@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt_struct.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 19:52:37 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:34:07 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ struct s_material;
 struct s_rt;
 struct s_cam_info;
 struct s_light_hit_info;
+struct s_camera;
 
 typedef struct			s_vars
 {
@@ -53,7 +54,7 @@ typedef struct			s_vec
 	double				z;
 }						t_vec;
 
-t_vec					*vec_create(double x, double y, double z);
+t_vec					*vec_new(double x, double y, double z);
 t_vec					*vec_dup(t_vec *ori);
 
 t_vec					*vec_add(t_vec *a, t_vec *b);
@@ -116,18 +117,16 @@ typedef struct			s_hitlst_info
 	double				t_max;
 	double				a;
 	double				half_b;
+	double				c;
 	double				root_d;
 	t_hit_record		*rec;
 	struct s_material	*mat;
 }						t_hitlst_info;
 
 t_hitlst_info			*hitlst_info_new(t_ray *r, double tmax);
+t_hitlst_info			*get_hitlst_info(int x, int y, struct s_camera *cam);
 void					free_hitlst_info(t_hitlst_info *info,
-											int is_ray_ori_free);
-
-/*
-** hit function -> (object *, t_ray *, info *, hit_record *)
-*/
+							int is_ray_ori_free, int is_mat_free);
 
 typedef struct			s_hittable
 {

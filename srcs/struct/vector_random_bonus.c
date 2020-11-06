@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:52:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/19 16:06:18 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:24:25 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_vec		*vec_random_range(double min, double max)
 {
-	return (vec_create(random_double_range(min, max),
+	return (vec_new(random_double_range(min, max),
 						random_double_range(min, max),
 						random_double_range(min, max)));
 }
@@ -44,7 +44,7 @@ t_vec		*vec_random_unit(void)
 	a = random_double_range(0, 2 * MINI_PI);
 	z = random_double_range(-1, 1);
 	r = sqrt(1.0 - z * z);
-	return (vec_create(r * cos(a), r * sin(a), z));
+	return (vec_new(r * cos(a), r * sin(a), z));
 }
 
 t_vec		*vec_random_in_hemisphere(t_vec *normal)

@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 17:01:05 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:23:47 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-/*
-** Using ft_isalpha -> Not impledmented yet
-*/
 
 static void		parse_line(t_rt *rt, char **words)
 {
@@ -31,11 +27,11 @@ static void		parse_line(t_rt *rt, char **words)
 	else if (ft_strncmp(*words, "pl", 3) == 0)
 		parse_plane(rt, ++words);
 	else if (ft_strncmp(*words, "sq", 3) == 0)
-		ft_isalpha(**words);
+		parse_square(rt, ++words);
 	else if (ft_strncmp(*words, "cy", 3) == 0)
-		ft_isalpha(**words);
+		parse_cylinder(rt, ++words);
 	else if (ft_strncmp(*words, "tr", 3) == 0)
-		ft_isalpha(**words);
+		parse_triangle(rt, ++words);
 	else
 		throw_error_num("Wrong identifier in .rt file", EIO);
 }
@@ -117,8 +113,6 @@ t_rt			*parse_file(char *filename, int is_mlx)
 	apply_lst(result);
 	return (result);
 }
-
-// NEED TO FIX LIGHTLST FREE & camlst free in later!!!!
 
 void			free_rt(t_rt *rt)
 {

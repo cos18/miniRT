@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hit_record.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:57:03 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 17:28:39 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:23:56 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,27 @@ t_hit_record	*hit_record_new(void)
 	result = (t_hit_record *)malloc_safe(sizeof(t_hit_record));
 	result->normal = NULL;
 	result->p = NULL;
+	result->mat = NULL;
 	return (result);
 }
 
 void			reset_hit_record(t_hit_record *rec)
 {
 	if (rec->normal)
+	{
 		free(rec->normal);
+		rec->normal = NULL;
+	}
 	if (rec->p)
+	{
 		free(rec->p);
+		rec->p = NULL;
+	}
+	if (rec->mat)
+	{
+		free_material(rec->mat);
+		rec->mat = NULL;
+	}
 }
 
 void			free_hit_record(t_hit_record *rec)

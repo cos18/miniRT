@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   material_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sunpark <sunpark@studne>                   +#+  +:+       +#+        */
+/*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:27:10 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/04 19:52:28 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:24:14 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_material			*material_dup(t_material *mat)
 	result->color = vec_dup(mat->color);
 	result->mat_type = mat->mat_type;
 	result->scatter = mat->scatter;
-	result->amb = mat->amb ? vec_dup(mat->amb) : NULL;
+	result->amb = (mat->amb != NULL) ? vec_dup(mat->amb) : NULL;
 	if (mat->mat_type == MAT_METAL)
 		result->fuzz = mat->fuzz;
 	return (result);

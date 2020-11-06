@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 17:44:29 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 21:33:17 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void			throw_error_num(char *message, int pnum);
 void			*malloc_safe(size_t size);
 
 int				get_color_val(t_vec *color);
+int				get_color_sample(t_vec *color);
 int				get_t(int trgb);
 t_vec			*get_color(int trgb);
 
@@ -50,6 +51,9 @@ void			parse_light(t_rt *rt, char **words);
 
 void			parse_sphere(t_rt *rt, char **words);
 void			parse_plane(t_rt *rt, char **words);
+void			parse_cylinder(t_rt *rt, char **words);
+void			parse_triangle(t_rt *rt, char **words);
+void			parse_square(t_rt *rt, char **words);
 
 t_rt			*parse_file(char *filename, int is_mlx);
 void			free_rt(t_rt *rt);
@@ -60,6 +64,8 @@ void			save_bmp(t_img_data *data, char	*filename);
 
 double			clamp(double x, double min, double max);
 double			get_radian(double degree);
+
+void			draw_hittable(t_camera *cam, t_rt *rt);
 
 typedef struct	s_sphere
 {
@@ -80,6 +86,8 @@ typedef struct	s_plane
 
 t_plane			*plane_new(t_vec *dot, t_vec *normal);
 void			free_plane(t_plane *p);
+int				is_in_plane(t_vec *p_dot, t_vec *p_normal, t_vec *point);
+double			get_plane_ray_t(t_vec *p_dot, t_vec *p_normal, t_ray *r);
 int				plane_hit(void *plane, t_ray *r, t_hitlst_info *info,
 							t_hit_record *rec);
 
@@ -87,7 +95,7 @@ typedef struct	s_cylinder
 {
 	t_ray		*start;
 	double		radius;
-	double		end_t;
+	t_vec		*end_p;
 }				t_cylinder;
 
 t_cylinder		*cylinder_new(t_vec *start_vec, t_vec *normal,
@@ -96,4 +104,34 @@ void			free_cylinder(t_cylinder *cy);
 int				cylinder_hit(void *cylinder, t_ray *r, t_hitlst_info *info,
 								t_hit_record *rec);
 
+typedef struct	s_triangle
+{
+	t_vec		*a;
+	t_vec		*b;
+	t_vec		*c;
+	t_vec		*side_a;
+	t_vec		*side_b;
+	t_vec		*side_c;
+	t_vec		*normal;
+}				t_triangle;
+
+t_triangle		*triangle_new(t_vec *a, t_vec *b, t_vec *c);
+void			free_triangle(t_triangle *tr);
+int				triangle_hit(void *triangle, t_ray *r, t_hitlst_info *info,
+								t_hit_record *rec);
+
+typedef struct	s_square
+{
+	t_vec		*normal;
+	t_vec		*a;
+	t_vec		*b;
+	t_vec		*c;
+	t_vec		*d;
+	double		h_side;
+}				t_square;
+
+t_square		*square_new(t_vec *c, t_vec *normal, double side);
+void			free_square(t_square *sq);
+int				square_hit(void *square, t_ray *r, t_hitlst_info *info,
+								t_hit_record *rec);
 #endif
