@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:43:44 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/06 22:29:11 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				main(int argv, char **argc)
 	img = ((t_camera *)(rt->camlst->content))->data;
 	mlx = rt->mlx;
 	if (mlx)
-		mlx_show(img, "miniRT", mlx);
+		mlx_show(rt->camlst, "miniRT", mlx);
 	else
 		save_bmp(img, argc[1]);
 	free_rt(rt);
