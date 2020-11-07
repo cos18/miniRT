@@ -1,6 +1,7 @@
 miniRT
 *.swiftdoc
 *.swiftmodule
+*.swiftsourceinfo
 *.bmp
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,c,swift

@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 22:39:06 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/07 16:49:12 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ typedef struct			s_vars
 
 typedef struct			s_mlx_data
 {
+	struct s_rt			*rt;
 	t_list				*camlst;
+	void				*mlx;
+	void				*win;
 	void				*img;
 	char				*addr;
 	int					bits_per_pixel;

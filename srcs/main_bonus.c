@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 22:30:50 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/07 17:00:08 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int				main(int argv, char **argc)
 {
 	t_rt		*rt;
-	void		*mlx;
 	t_list		*camlst;
 	t_img_data	*img;
 
@@ -28,11 +27,12 @@ int				main(int argv, char **argc)
 	{
 		draw_hittable_pthread(camlst->content, rt);
 		camlst = camlst->next;
+		if (argv == 3)
+			break ;
 	}
 	img = ((t_camera *)(rt->camlst->content))->data;
-	mlx = rt->mlx;
-	if (mlx)
-		mlx_show(rt->camlst, "miniRT", mlx);
+	if (argv == 2)
+		mlx_show(rt);
 	else
 		save_bmp(img, argc[1]);
 	free_rt(rt);

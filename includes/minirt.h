@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 22:33:43 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/07 16:53:58 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ int				get_color_sample(t_vec *color);
 int				get_t(int trgb);
 t_vec			*get_color(int trgb);
 
-void			mlx_draw_img(t_mlx_data *mlx_data, t_img_data *img_data);
-int				mlx_key_handle(int keycode, void *param);
-void			mlx_show(t_list *camlst, char *title, void *mlx);
+void			mlx_show(t_rt *rt);
 
 int				free_strs(char **sep, int is_vaild_p, int word_locate);
 char			**split_space(char const *s);
