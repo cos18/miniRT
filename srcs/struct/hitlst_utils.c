@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:29:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:24:01 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:16:44 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,20 @@ t_list			*rtlst_new(void)
 void			hitlst_add(t_list *lst, void *obj, int obj_type,
 								t_material *mat)
 {
+	int			onum;
+
+	onum = 0;
 	if (lst->content)
 	{
 		while (lst->next)
+		{
 			lst = lst->next;
+			onum++;
+		}
 		lst->next = rtlst_new();
 		lst = lst->next;
 	}
-	lst->content = hittable_create(obj, obj_type, mat);
+	lst->content = hittable_create(obj, obj_type, mat, onum);
 }
 
 void			free_hitlst(t_list *lst)
@@ -53,6 +59,7 @@ int				hitlst_hit(t_list *lst, t_hitlst_info *info)
 	{
 		hittable = (t_hittable *)(lst->content);
 		info->mat = material_dup(hittable->mat);
+		info->onum = hittable->onum;
 		if ((*(hittable->hit))(hittable->obj, info->ray, info, info->rec))
 		{
 			hit_anything = TRUE;

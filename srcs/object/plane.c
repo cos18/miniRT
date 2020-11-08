@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 21:05:47 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:23:29 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:18:03 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int			plane_hit(void *plane, t_ray *r, t_hitlst_info *info,
 	rec->normal = vec_unit(p->normal);
 	hit_set_normal(rec, r);
 	rec->mat = material_dup(info->mat);
+	rec->onum = info->onum;
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 22:21:16 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:21:08 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void				get_hittable_color(t_list *hitlst,
 	if (hitlst_hit(hitlst, info))
 	{
 		target = vec_mul_each(info->rec->mat->color, info->rec->mat->amb);
-		linfo = lhit_info_new(info->rec->p, info->rec->normal, info->ray);
+		linfo = lhit_info_new(info->rec->p, info->rec->normal, info->ray,
+								info->rec->onum);
 		light = lightlst_hit(lightlst, hitlst, linfo);
 		vec_mul_each_apply(light, info->rec->mat->color);
 		vec_add_apply(target, light);

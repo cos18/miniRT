@@ -6,7 +6,7 @@
 #    By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/04 13:34:20 by sunpark           #+#    #+#              #
-#    Updated: 2020/11/07 16:56:17 by sunpark          ###   ########.fr        #
+#    Updated: 2020/11/08 11:25:27 by sunpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,12 @@ SRC		= error.c color.c mlx_utils.c save_bmp.c cal_utils.c \
 		object/cylinder_hit.c object/triangle.c object/square.c \
 		object/square_hit.c \
 
-MSRC	= main.c draw_hittable.c material/simple_material.c
+MSRC	= main.c draw_hittable.c material/simple_material.c \
+		parse/parse_line.c
 
 BSRC	= main_bonus.c random_bonus.c draw_hittable_pthread_bonus.c \
 		struct/vector_random_bonus.c struct/thread_info_utils_bonus.c \
-		material/simple_material_bonus.c \
+		material/simple_material_bonus.c parse/parse_bonus.c \
 
 SRCDIR	= ./srcs/
 SRCS	= $(addprefix $(SRCDIR), $(SRC))
@@ -49,7 +50,7 @@ MLXNAME	= libmlx.dylib
 NAME	= miniRT
 
 GCC		= gcc
-GCCFLAG	= -Wall -Wextra -Werror -g -fsanitize=address
+GCCFLAG	= -Wall -Wextra -Werror
 RM		= rm -f
 
 %.o:		%.c

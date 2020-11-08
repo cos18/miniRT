@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:06 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/07 17:00:08 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:50:00 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,4 @@ int				main(int argv, char **argc)
 	else
 		save_bmp(img, argc[1]);
 	free_rt(rt);
-	while (1)
-		(void)rt;
 }

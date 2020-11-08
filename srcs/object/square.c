@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 18:16:51 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:23:35 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 10:49:05 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ t_square		*square_new(t_vec *c, t_vec *normal, double side)
 	}
 	else
 		square_set_abcd(result, c);
-	free(c);
 	return (result);
 }
 

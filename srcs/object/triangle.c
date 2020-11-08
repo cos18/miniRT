@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 15:27:37 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:58:47 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:19:12 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ int				triangle_hit(void *triangle, t_ray *r, t_hitlst_info *info,
 	rec->normal = vec_dup(tr->normal);
 	hit_set_normal(rec, r);
 	rec->mat = material_dup(info->mat);
+	rec->onum = info->onum;
 	return (TRUE);
 }

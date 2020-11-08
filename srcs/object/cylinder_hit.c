@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 21:01:26 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:51:29 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:17:54 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static int		cylinder_set_rec(t_cylinder *cy, t_ray *r, t_hitlst_info *info,
 	vec_unit_apply(rec->normal);
 	hit_set_normal(rec, r);
 	rec->mat = material_dup(info->mat);
+	rec->onum = info->onum;
 	return (TRUE);
 }
 

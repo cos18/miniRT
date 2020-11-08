@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:31:49 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/07 16:40:02 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:18:47 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int				square_hit(void *square, t_ray *r, t_hitlst_info *info,
 	rec->normal = vec_dup(sq->normal);
 	hit_set_normal(rec, r);
 	rec->mat = material_dup(info->mat);
+	rec->onum = info->onum;
 	return (TRUE);
 }

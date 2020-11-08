@@ -6,13 +6,14 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 13:44:39 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:24:07 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:23:27 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_light_hit_info		*lhit_info_new(t_vec *to, t_vec *normal, t_ray *r)
+t_light_hit_info		*lhit_info_new(t_vec *to, t_vec *normal, t_ray *r,
+										int onum)
 {
 	t_light_hit_info	*result;
 
@@ -22,6 +23,7 @@ t_light_hit_info		*lhit_info_new(t_vec *to, t_vec *normal, t_ray *r)
 	result->r = (t_ray *)malloc_safe(sizeof(t_ray));
 	result->r->dir = vec_dup(r->dir);
 	result->r->orig = vec_dup(r->orig);
+	result->onum = onum;
 	return (result);
 }
 

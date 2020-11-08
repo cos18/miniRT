@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/07 16:49:12 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:22:45 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct			s_hit_record
 	double				t;
 	int					is_front_face;
 	struct s_material	*mat;
+	int					onum;
 }						t_hit_record;
 
 t_hit_record			*hit_record_new(void);
@@ -125,6 +126,7 @@ typedef struct			s_hitlst_info
 	double				root_d;
 	t_hit_record		*rec;
 	struct s_material	*mat;
+	int					onum;
 }						t_hitlst_info;
 
 t_hitlst_info			*hitlst_info_new(t_ray *r, double tmax);
@@ -139,10 +141,11 @@ typedef struct			s_hittable
 	int					(*hit)(void *s, t_ray *r, t_hitlst_info *info,
 									t_hit_record *);
 	struct s_material	*mat;
+	int					onum;
 }						t_hittable;
 
 t_hittable				*hittable_create(void *obj, int obj_type,
-												struct s_material *mat);
+										struct s_material *mat, int onum);
 void					free_hittable(t_hittable *h);
 
 t_list					*rtlst_new(void);
@@ -250,10 +253,12 @@ typedef struct			s_light_hit_info
 	t_vec				*to;
 	t_vec				*normal;
 	t_ray				*r;
+	int					onum;
 
 }						t_light_hit_info;
 
-t_light_hit_info		*lhit_info_new(t_vec *to, t_vec *normal, t_ray *r);
+t_light_hit_info		*lhit_info_new(t_vec *to, t_vec *normal,
+										t_ray *r, int onum);
 void					free_lhit_info(t_light_hit_info *info);
 
 #endif

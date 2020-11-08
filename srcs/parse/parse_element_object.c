@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 21:01:36 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:23:42 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 10:48:58 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void			parse_triangle(t_rt *rt, char **words)
 
 void			parse_square(t_rt *rt, char **words)
 {
+	t_vec		*point;
 	t_square	*sq;
 	t_material	*mat;
 	t_vec		*color;
@@ -104,7 +105,9 @@ void			parse_square(t_rt *rt, char **words)
 	side = ft_atod_strict(words[2]);
 	if (side < 0)
 		throw_error_num("Wrong side size value in Square", EIO);
-	sq = square_new(vec_atod(words[0]), vec_atod(words[1]), side);
+	point = vec_atod(words[0]);
+	sq = square_new(point, vec_atod(words[1]), side);
+	free(point);
 	mat = mat_lambertian_new(color);
 	hitlst_add(rt->hitlst, (void *)sq, OBJ_SQUARE, mat);
 	free_material(mat);

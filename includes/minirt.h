@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/11 21:12:59 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/07 16:53:58 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:13:39 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void			parse_cylinder(t_rt *rt, char **words);
 void			parse_triangle(t_rt *rt, char **words);
 void			parse_square(t_rt *rt, char **words);
 
+void			parse_line(t_rt *rt, char **words);
 t_rt			*parse_file(char *filename, int is_mlx);
 void			free_rt(t_rt *rt);
 
@@ -69,6 +70,7 @@ typedef struct	s_sphere
 {
 	t_vec		*center;
 	double		radius;
+	int			onum;
 }				t_sphere;
 
 t_sphere		*sphere_new(t_vec *center, double radius);
@@ -80,6 +82,7 @@ typedef struct	s_plane
 {
 	t_vec		*dot;
 	t_vec		*normal;
+	int			onum;
 }				t_plane;
 
 t_plane			*plane_new(t_vec *dot, t_vec *normal);
@@ -94,6 +97,7 @@ typedef struct	s_cylinder
 	t_ray		*start;
 	double		radius;
 	t_vec		*end_p;
+	int			onum;
 }				t_cylinder;
 
 t_cylinder		*cylinder_new(t_vec *start_vec, t_vec *normal,
@@ -111,6 +115,7 @@ typedef struct	s_triangle
 	t_vec		*side_b;
 	t_vec		*side_c;
 	t_vec		*normal;
+	int			onum;
 }				t_triangle;
 
 t_triangle		*triangle_new(t_vec *a, t_vec *b, t_vec *c);
@@ -126,6 +131,7 @@ typedef struct	s_square
 	t_vec		*c;
 	t_vec		*d;
 	double		h_side;
+	int			onum;
 }				t_square;
 
 t_square		*square_new(t_vec *c, t_vec *normal, double side);

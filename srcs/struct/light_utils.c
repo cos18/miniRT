@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:39:12 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 22:23:48 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:31:04 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,15 @@ void				light_hit(t_light *l, t_list *hitlst, t_vec *color,
 	t_hittable		*hittable;
 
 	is_hit = FALSE;
-	hinfo = hitlst_info_new(ray_new(l->loc, vec_sub(info->to, l->loc)), 0.9999);
+	hinfo = hitlst_info_new(ray_new(l->loc, vec_sub(info->to, l->loc)), 0.9);
 	while (is_hit == FALSE && hitlst && hitlst->content)
 	{
 		hittable = (t_hittable *)(hitlst->content);
 		hinfo->mat = material_dup(hittable->mat);
-		if ((*(hittable->hit))(hittable->obj, hinfo->ray, hinfo, hinfo->rec)
-				== FALSE)
+		if (hittable->obj_type == OBJ_SQUARE && hittable->onum == info->onum)
+			light_next(&hitlst, hinfo);
+		else if ((*(hittable->hit))(hittable->obj, hinfo->ray, hinfo,
+					hinfo->rec) == FALSE)
 			light_next(&hitlst, hinfo);
 		else
 			is_hit = TRUE;

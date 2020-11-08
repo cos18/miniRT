@@ -6,13 +6,14 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 16:35:38 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:24:03 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 11:22:52 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_hittable		*hittable_create(void *obj, int obj_type, t_material *mat)
+t_hittable		*hittable_create(void *obj, int obj_type, t_material *mat,
+									int onum)
 {
 	t_hittable	*result;
 
@@ -30,6 +31,7 @@ t_hittable		*hittable_create(void *obj, int obj_type, t_material *mat)
 		result->hit = &triangle_hit;
 	if (obj_type == OBJ_SQUARE)
 		result->hit = &square_hit;
+	result->onum = onum;
 	return (result);
 }
 
