@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 10:39:40 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 17:05:07 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,13 @@ static void		apply_lst(t_rt *rt)
 
 t_rt			*parse_file(char *filename, int is_mlx)
 {
+	int			fnamelen;
 	int			fd;
 	t_rt		*result;
 
+	fnamelen = ft_strlen(filename);
+	if (fnamelen < 3 || ft_strncmp(filename + fnamelen - 3, ".rt", 4) != 0)
+		throw_error_num("Wrong config file extension .rt", EIO);
 	if ((fd = open(filename, O_RDONLY)) < 0)
 		throw_error("File open error");
 	result = (t_rt *)malloc_safe(sizeof(t_rt));
