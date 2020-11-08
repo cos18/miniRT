@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 11:22:45 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 15:15:52 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ double					vec_dot(t_vec *a, t_vec *b);
 t_vec					*vec_cross(t_vec *a, t_vec *b);
 t_vec					*vec_unit(t_vec *a);
 
-void					vec_print(t_vec *a);
 int						vec_is_parallel(t_vec *a, t_vec *b);
 int						vec_is_orthogonal(t_vec *a, t_vec *b);
 double					vec_idx(t_vec *a, int idx);

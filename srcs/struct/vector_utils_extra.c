@@ -6,18 +6,11 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 15:54:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/31 14:38:21 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/08 15:13:32 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// Need to delete this function before final submit
-
-void		vec_print(t_vec *a)
-{
-	printf("%lf %lf %lf\n", a->x, a->y, a->z);
-}
 
 int			vec_is_parallel(t_vec *a, t_vec *b)
 {
