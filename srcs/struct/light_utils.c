@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 21:39:12 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 11:31:04 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:47 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_light				*light_new(t_vec *loc, double bright, t_vec *color)
 	result = (t_light *)malloc_safe(sizeof(t_light));
 	result->loc = loc;
 	result->bright = bright;
-	result->color = vec_div_const_apply(color, 255);
+	result->color = vec_div_c_apply(color, 255);
 	return (result);
 }
 
@@ -38,15 +38,15 @@ static t_vec		*get_light_color(t_light *l, t_light_hit_info *info)
 	t_vec			*see;
 	double			c;
 
-	color = vec_mul_const(l->color, l->bright);
+	color = vec_mul_c(l->color, l->bright);
 	light_to_p = vec_unit_apply(vec_sub(info->to, l->loc));
 	reflect = vec_unit_apply(vec_reflect(light_to_p, info->normal));
-	see = vec_unit_apply(vec_mul_const(info->r->dir, -1.0));
+	see = vec_unit_apply(vec_mul_c(info->r->dir, -1.0));
 	c = vec_dot(reflect, see);
 	c = ((c < 0) ? 0 : c) / vec_length_squared(light_to_p);
 	c = pow(c, 30);
-	c += fmax(0, vec_dot(vec_mul_const_apply(light_to_p, -1), info->normal));
-	vec_mul_const_apply(color, c);
+	c += fmax(0, vec_dot(vec_mul_c_apply(light_to_p, -1), info->normal));
+	vec_mul_c_apply(color, c);
 	free(light_to_p);
 	free(reflect);
 	free(see);

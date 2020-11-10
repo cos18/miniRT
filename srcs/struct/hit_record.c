@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 15:57:03 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:23:56 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:26 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void			hit_set_normal(t_hit_record *record, t_ray *r)
 	record->is_front_face = (vec_dot(r->dir, record->normal) < 0) ?
 								TRUE : FALSE;
 	if (record->is_front_face == FALSE)
-		vec_mul_const_apply(record->normal, -1);
+		vec_mul_c_apply(record->normal, -1);
 }

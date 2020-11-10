@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:52:02 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:24:25 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:26 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ t_vec		*vec_random_in_hemisphere(t_vec *normal)
 	in_unit = vec_random_unit();
 	if (vec_dot(in_unit, normal) > 0.0)
 		return (in_unit);
-	return (vec_mul_const_apply(in_unit, -1.0));
+	return (vec_mul_c_apply(in_unit, -1.0));
 }

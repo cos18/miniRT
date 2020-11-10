@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:27:10 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:24:14 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:47 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_material			*material_new(int mat_type, t_vec *color)
 	t_material		*result;
 
 	result = (t_material *)malloc_safe(sizeof(t_material));
-	vec_div_const_apply(color, 255.0);
+	vec_div_c_apply(color, 255.0);
 	result->color = color;
 	result->mat_type = mat_type;
 	result->amb = NULL;

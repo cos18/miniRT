@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 11:21:08 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 21:07:12 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,14 @@ void					draw_hittable(t_camera *cam, t_rt *rt)
 {
 	int					x[2];
 
-	x[1] = cam->data->height;
-	while ((--x[1]) >= 0)
+	x[1] = -1;
+	while ((++x[1]) < cam->data->height)
 	{
 		x[0] = -1;
 		while ((++x[0]) < cam->data->width)
 			cam->data->img[x[0]][x[1]] = get_pixel_color(x, cam, rt);
-		ft_printf("Finish render line %d\n", x[1]);
+		ft_printf("\rRendering %3d%%",
+						(x[1] + 1) * 100 / cam->data->height);
 	}
+	ft_printf("\n");
 }

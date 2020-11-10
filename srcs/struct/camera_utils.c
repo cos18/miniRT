@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:33:13 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:23:52 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:47 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void			set_camera_llc(t_camera *cam, t_vec *lookat)
 {
 	t_vec		*tmp;
 
-	vec_div_const_apply(cam->horizontal, 2.0);
-	vec_div_const_apply(cam->vertical, 2.0);
+	vec_div_c_apply(cam->horizontal, 2.0);
+	vec_div_c_apply(cam->vertical, 2.0);
 	tmp = vec_add(cam->horizontal, cam->vertical);
 	vec_add_apply(tmp, lookat);
 	cam->lower_left_corner = vec_sub(cam->origin, tmp);
 	free(tmp);
-	vec_mul_const_apply(cam->horizontal, 2.0);
-	vec_mul_const_apply(cam->vertical, 2.0);
+	vec_mul_c_apply(cam->horizontal, 2.0);
+	vec_mul_c_apply(cam->vertical, 2.0);
 }
 
 t_camera		*camera_new(double aspect_ratio)
@@ -61,7 +61,7 @@ t_camera		*camera_locate_new(t_vec *lookfrom, t_vec *lookat,
 	double		view_w;
 	t_vec		*vup;
 
-	vec_unit_apply(vec_mul_const_apply(lookat, -1.0));
+	vec_unit_apply(vec_mul_c_apply(lookat, -1.0));
 	vup = vec_new(0, 0, 1);
 	if (vec_is_parallel(vup, lookat))
 	{
@@ -72,9 +72,9 @@ t_camera		*camera_locate_new(t_vec *lookfrom, t_vec *lookat,
 	view_w = 2.0 * tan(fov / 2.0);
 	view_h = view_w / aspect_ratio;
 	result->horizontal = vec_unit_apply(vec_cross_apply(vup, lookat));
-	result->vertical = vec_mul_const_apply(
+	result->vertical = vec_mul_c_apply(
 							vec_cross(lookat, result->horizontal), view_h);
-	vec_mul_const_apply(result->horizontal, view_w);
+	vec_mul_c_apply(result->horizontal, view_w);
 	result->origin = lookfrom;
 	set_camera_llc(result, lookat);
 	free(lookat);
@@ -86,10 +86,10 @@ t_ray			*camera_get_ray(t_camera *cam, double u, double v)
 	t_vec		*tmp;
 	t_vec		*tmp2;
 
-	tmp2 = vec_mul_const(cam->horizontal, u);
+	tmp2 = vec_mul_c(cam->horizontal, u);
 	tmp = vec_add(cam->lower_left_corner, tmp2);
 	free(tmp2);
-	tmp2 = vec_mul_const(cam->vertical, v);
+	tmp2 = vec_mul_c(cam->vertical, v);
 	vec_add_apply(tmp, tmp2);
 	free(tmp2);
 	vec_sub_apply(tmp, cam->origin);

@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 14:34:23 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/15 10:43:59 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:47 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vec	*vec_sub_apply(t_vec *a, t_vec *b)
 	return (a);
 }
 
-t_vec	*vec_mul_const_apply(t_vec *a, double c)
+t_vec	*vec_mul_c_apply(t_vec *a, double c)
 {
 	a->x *= c;
 	a->y *= c;
@@ -36,7 +36,7 @@ t_vec	*vec_mul_const_apply(t_vec *a, double c)
 	return (a);
 }
 
-t_vec	*vec_div_const_apply(t_vec *a, double c)
+t_vec	*vec_div_c_apply(t_vec *a, double c)
 {
 	a->x /= c;
 	a->y /= c;
@@ -46,5 +46,5 @@ t_vec	*vec_div_const_apply(t_vec *a, double c)
 
 t_vec	*vec_unit_apply(t_vec *a)
 {
-	return (vec_div_const_apply(a, vec_length(a)));
+	return (vec_div_c_apply(a, vec_length(a)));
 }

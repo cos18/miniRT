@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 22:07:33 by sunpark           #+#    #+#             */
-/*   Updated: 2020/10/28 21:17:57 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:26 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_vec		*ray_at(t_ray *ray, double t)
 	t_vec	*result;
 	t_vec	*tmp_vec;
 
-	tmp_vec = vec_mul_const(ray->dir, t);
+	tmp_vec = vec_mul_c(ray->dir, t);
 	result = vec_add(tmp_vec, ray->orig);
 	free(tmp_vec);
 	return (result);

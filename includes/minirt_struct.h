@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 21:48:41 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 15:15:52 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:47 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ t_vec					*vec_dup(t_vec *ori);
 
 t_vec					*vec_add(t_vec *a, t_vec *b);
 t_vec					*vec_sub(t_vec *a, t_vec *b);
-t_vec					*vec_mul_const(t_vec *a, double c);
-t_vec					*vec_div_const(t_vec *a, double c);
+t_vec					*vec_mul_c(t_vec *a, double c);
+t_vec					*vec_div_c(t_vec *a, double c);
 t_vec					*vec_reflect(t_vec *v, t_vec *n);
 
 double					vec_length_squared(t_vec *a);
@@ -80,8 +80,8 @@ int						vec_is_color_range(t_vec *a);
 
 t_vec					*vec_add_apply(t_vec *a, t_vec *b);
 t_vec					*vec_sub_apply(t_vec *a, t_vec *b);
-t_vec					*vec_mul_const_apply(t_vec *a, double c);
-t_vec					*vec_div_const_apply(t_vec *a, double c);
+t_vec					*vec_mul_c_apply(t_vec *a, double c);
+t_vec					*vec_div_c_apply(t_vec *a, double c);
 t_vec					*vec_unit_apply(t_vec *a);
 
 t_vec					*vec_cross_apply(t_vec *a, t_vec *b);

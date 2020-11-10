@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/14 04:55:05 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 11:27:30 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 23:11:31 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void				*render(void *arg)
 		x[0] = -1;
 		while ((++x[0]) < tinfo->cam->data->width)
 			tinfo->cam->data->img[x[0]][x[1]] = get_pixel_color(x, tinfo);
-		ft_printf("Finish render line %d\n", x[1]);
+		ft_printf("Finish render line %d in Thread %d\n", x[1], tinfo->tnum);
 	}
 	free(tinfo);
 	return (NULL);
@@ -85,6 +85,7 @@ void					draw_hittable_pthread(t_camera *cam, t_rt *rt)
 
 	threads = (pthread_t *)malloc_safe(sizeof(pthread_t) * PTHREAD_CNT);
 	pnum = 0;
+	ft_printf("Start Rendering with %d Threads!\n", PTHREAD_CNT);
 	while (++pnum <= PTHREAD_CNT)
 	{
 		info = tinfo_new(cam, rt, pnum);

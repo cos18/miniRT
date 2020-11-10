@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 20:31:29 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:38:38 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:26 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int				metal_scatter(t_material *mat, t_ray *ray_in, t_hit_record *rec,
 	tmp = vec_unit(ray_in->dir);
 	reflected = vec_reflect(tmp, rec->normal);
 	free(tmp);
-	tmp = vec_mul_const_apply(vec_random_in_unit_sphere(), mat->fuzz);
+	tmp = vec_mul_c_apply(vec_random_in_unit_sphere(), mat->fuzz);
 	info->scattered = ray_new(vec_dup(rec->p),
 							vec_add_apply(reflected, tmp));
 	free(tmp);

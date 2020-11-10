@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 20:34:43 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 10:59:27 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 23:13:20 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void		parse_pyramid(t_rt *rt, char **words)
 	sq = square_new(point, vec_atod(words[1]), s[0]);
 	mat = mat_lambertian_new(color);
 	hitlst_add(rt->hitlst, (void *)sq, OBJ_SQUARE, mat);
-	color = vec_mul_const(sq->normal, s[1]);
+	color = vec_mul_c(sq->normal, s[1]);
 	pyramid_add_tri(rt, sq, vec_add_apply(point, color), mat);
 	free(color);
 	free_material(mat);

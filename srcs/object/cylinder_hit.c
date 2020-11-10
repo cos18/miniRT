@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 21:01:26 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 11:17:54 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:26 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ static int		cylinder_get_abc(t_cylinder *cy, t_ray *r, t_hitlst_info *info)
 	t_vec		*tmp2;
 	double		discriminant;
 
-	tmp = vec_mul_const(cy->start->dir, vec_dot(cy->start->dir, r->dir));
+	tmp = vec_mul_c(cy->start->dir, vec_dot(cy->start->dir, r->dir));
 	info->a = vec_length_squared(vec_sub_apply(tmp, r->dir));
 	delta_p = vec_sub(r->orig, cy->start->dir);
-	tmp2 = vec_mul_const(cy->start->dir, vec_dot(cy->start->dir, delta_p));
+	tmp2 = vec_mul_c(cy->start->dir, vec_dot(cy->start->dir, delta_p));
 	info->half_b = vec_dot(tmp, vec_sub_apply(tmp2, delta_p));
 	info->c = vec_length_squared(tmp2) - pow(cy->radius, 2.0);
 	discriminant = info->half_b * info->half_b - info->a * info->c;
@@ -68,7 +68,7 @@ static int		cylinder_set_rec(t_cylinder *cy, t_ray *r, t_hitlst_info *info,
 	rec->p = ray_at(r, g_t);
 	tmp = vec_sub(rec->p, cy->start->orig);
 	dot = vec_dot(cy->start->dir, tmp) / vec_length(cy->start->dir);
-	rec->normal = vec_sub_apply(vec_mul_const(cy->start->dir, dot), tmp);
+	rec->normal = vec_sub_apply(vec_mul_c(cy->start->dir, dot), tmp);
 	free(tmp);
 	vec_unit_apply(rec->normal);
 	hit_set_normal(rec, r);

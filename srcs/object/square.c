@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 18:16:51 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/08 10:49:05 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:26 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static void		square_set_abcd_final(t_square *sq, t_vec *c, t_vec *ab_center)
 	t_vec		*up;
 
 	cross_n = vec_unit_apply(vec_new(sq->normal->y, -1 * sq->normal->x, 0));
-	sq->b = vec_add_apply(vec_mul_const(cross_n, sq->h_side), ab_center);
-	sq->a = vec_add_apply(vec_mul_const(cross_n, -1 * sq->h_side), ab_center);
+	sq->b = vec_add_apply(vec_mul_c(cross_n, sq->h_side), ab_center);
+	sq->a = vec_add_apply(vec_mul_c(cross_n, -1 * sq->h_side), ab_center);
 	up = vec_sub(c, ab_center);
-	sq->c = vec_add_apply(vec_mul_const(up, 2), sq->b);
-	sq->d = vec_add_apply(vec_mul_const(up, 2), sq->a);
+	sq->c = vec_add_apply(vec_mul_c(up, 2), sq->b);
+	sq->d = vec_add_apply(vec_mul_c(up, 2), sq->a);
 	free(up);
 	free(cross_n);
 }

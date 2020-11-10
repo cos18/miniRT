@@ -6,7 +6,7 @@
 /*   By: sunpark <sunpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:58:17 by sunpark           #+#    #+#             */
-/*   Updated: 2020/11/06 21:23:44 by sunpark          ###   ########.fr       */
+/*   Updated: 2020/11/10 20:38:26 by sunpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			parse_amb_light(t_rt *rt, char **words)
 	rt->amb_light = vec_atoi(words[1]);
 	if (vec_is_color_range(rt->amb_light) == FALSE)
 		throw_error_num("Wrong RGB color value in Ambient Light", EIO);
-	vec_mul_const_apply(rt->amb_light, ft_atod_strict(words[0]) / 255.0);
+	vec_mul_c_apply(rt->amb_light, ft_atod_strict(words[0]) / 255.0);
 }
 
 void			parse_camera(t_rt *rt, char **words)
